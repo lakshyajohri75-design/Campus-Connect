@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Student Dashboard - CampusConnect</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            color: #111827;
+        }
+
+        /* =====================================================
+           NAVBAR
+        ===================================================== */
+
+        .navbar {
+            background: #111827;
+            color: white;
+            padding: 18px 40px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar h2 {
+            margin: 0;
+            font-size: 22px;
+        }
+
+        .navbar-links {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+        }
+
+        .navbar a {
+            color: #e5e7eb;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .navbar a:hover {
+            color: white;
+        }
+
+        /* =====================================================
+           PAGE
+        ===================================================== */
+
+        .page {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px 50px;
+        }
+
+        .page-header {
+            margin-bottom: 28px;
+        }
+
+        .eyebrow {
+            color: #2563eb;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .page-header h1 {
+            margin: 0 0 8px;
+            font-size: 32px;
+        }
+
+        .page-header p {
+            margin: 0;
+            color: #6b7280;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        /* =====================================================
+           CARDS
+        ===================================================== */
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            margin-bottom: 22px;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
+            padding: 24px;
+
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .stat-card {
+            text-align: center;
+        }
+
+        .stat-icon {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .stat-number {
+            font-size: 30px;
+            font-weight: bold;
+            color: #2563eb;
+            margin-bottom: 6px;
+        }
+
+        .stat-label {
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        /* =====================================================
+           WELCOME CARD
+        ===================================================== */
+
+        .welcome-card {
+            border-left: 5px solid #2563eb;
+            margin-bottom: 22px;
+        }
+
+        .welcome-card h2 {
+            margin: 0 0 8px;
+            font-size: 24px;
+        }
+
+        .welcome-card p {
+            margin: 0;
+            color: #6b7280;
+            line-height: 1.6;
+        }
+
+        /* =====================================================
+           ACTION CARDS
+        ===================================================== */
+
+        .section-title {
+            margin: 30px 0 15px;
+            font-size: 21px;
+        }
+
+        .actions {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .action-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
+            padding: 24px;
+
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+
+            display: flex;
+            flex-direction: column;
+        }
+
+        .action-icon {
+            font-size: 32px;
+            margin-bottom: 14px;
+        }
+
+        .action-card h3 {
+            margin: 0 0 8px;
+            font-size: 19px;
+        }
+
+        .action-card p {
+            color: #6b7280;
+            line-height: 1.5;
+            font-size: 14px;
+            margin: 0 0 20px;
+
+            flex-grow: 1;
+        }
+
+        /* =====================================================
+           BUTTON
+        ===================================================== */
+
+        .button {
+            display: inline-block;
+            text-align: center;
+
+            background: #2563eb;
+            color: white;
+
+            text-decoration: none;
+
+            padding: 12px 18px;
+
+            border-radius: 9px;
+
+            font-size: 14px;
+            font-weight: bold;
+
+            transition: 0.2s;
+        }
+
+        .button:hover {
+            background: #1d4ed8;
+            transform: translateY(-1px);
+        }
+
+        .secondary-button {
+            background: #f3f4f6;
+            color: #374151;
+        }
+
+        .secondary-button:hover {
+            background: #e5e7eb;
+        }
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        .footer {
+            text-align: center;
+            margin-top: 35px;
+            padding-top: 20px;
+
+            border-top: 1px solid #e5e7eb;
+
+            color: #6b7280;
+            font-size: 13px;
+        }
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
+        @media (max-width: 750px) {
+
+            .navbar {
+                padding: 16px 20px;
+
+                flex-direction: column;
+                align-items: flex-start;
+
+                gap: 14px;
+            }
+
+            .navbar-links {
+                flex-wrap: wrap;
+                gap: 12px;
+            }
+
+            .page {
+                margin-top: 25px;
+                padding: 0 15px 35px;
+            }
+
+            .page-header h1 {
+                font-size: 27px;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .actions {
+                grid-template-columns: 1fr;
+            }
+
+            .card,
+            .action-card {
+                padding: 20px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+
+    <!-- =====================================================
+         NAVBAR
+    ===================================================== -->
+
+    <nav class="navbar">
+
+        <h2>
+            🎓 CampusConnect
+        </h2>
+
+        <div class="navbar-links">
+
+            <a href="/student/dashboard">
+                Dashboard
+            </a>
+
+            <a href="/student/clubs">
+                Explore Clubs
+            </a>
+
+            <a href="/student/applications">
+                Applications
+            </a>
+
+            <a href="/student/profile">
+                Profile
+            </a>
+
+            <a href="/logout">
+                Logout
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- =====================================================
+         MAIN PAGE
+    ===================================================== -->
+
+    <main class="page">
+
+
+        <!-- =================================================
+             PAGE HEADER
+        ================================================= -->
+
+        <div class="page-header">
+
+            <div class="eyebrow">
+                Student Portal
+            </div>
+
+            <h1>
+                Student Dashboard
+            </h1>
+
+            <p>
+                Discover clubs, explore opportunities and track
+                your applications in one place.
+            </p>
+
+        </div>
+
+
+        <!-- =================================================
+             WELCOME CARD
+        ================================================= -->
+
+        <div class="card welcome-card">
+
+            <h2>
+                Welcome, {{ student_name }}! 👋
+            </h2>
+
+            <p>
+                Ready to discover your next opportunity?
+                Explore clubs and find communities that match
+                your interests.
+            </p>
+
+        </div>
+
+
+        <!-- =================================================
+             STATISTICS
+        ================================================= -->
+
+        <div class="card-grid">
+
+
+            <!-- APPLICATIONS -->
+
+            <div class="card stat-card">
+
+                <div class="stat-icon">
+                    📋
+                </div>
+
+                <div class="stat-number">
+                    {{ application_count }}
+                </div>
+
+                <div class="stat-label">
+                    Applications Submitted
+                </div>
+
+            </div>
+
+
+            <!-- CLUBS -->
+
+            <div class="card stat-card">
+
+                <div class="stat-icon">
+                    🔎
+                </div>
+
+                <div class="stat-number">
+                    Explore
+                </div>
+
+                <div class="stat-label">
+                    Available Clubs
+                </div>
+
+            </div>
+
+
+            <!-- PROFILE -->
+
+            <div class="card stat-card">
+
+                <div class="stat-icon">
+                    👤
+                </div>
+
+                <div class="stat-number">
+                    Profile
+                </div>
+
+                <div class="stat-label">
+                    Manage Your Information
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             QUICK ACTIONS
+        ================================================= -->
+
+        <h2 class="section-title">
+            Quick Actions
+        </h2>
+
+
+        <div class="actions">
+
+
+            <!-- EXPLORE CLUBS -->
+
+            <div class="action-card">
+
+                <div class="action-icon">
+                    🔎
+                </div>
+
+                <h3>
+                    Explore Clubs
+                </h3>
+
+                <p>
+                    Discover clubs, view their information and
+                    find opportunities that interest you.
+                </p>
+
+                <a
+                    href="/student/clubs"
+                    class="button"
+                >
+                    Explore Clubs
+                </a>
+
+            </div>
+
+
+            <!-- APPLICATIONS -->
+
+            <div class="action-card">
+
+                <div class="action-icon">
+                    📋
+                </div>
+
+                <h3>
+                    My Applications
+                </h3>
+
+                <p>
+                    Track your submitted applications and see
+                    your current recruitment status.
+                </p>
+
+                <a
+                    href="/student/applications"
+                    class="button"
+                >
+                    View Applications
+                </a>
+
+            </div>
+
+
+            <!-- PROFILE -->
+
+            <div class="action-card">
+
+                <div class="action-icon">
+                    👤
+                </div>
+
+                <h3>
+                    My Profile
+                </h3>
+
+                <p>
+                    View and update your name and email
+                    information.
+                </p>
+
+                <a
+                    href="/student/profile"
+                    class="button secondary-button"
+                >
+                    View / Edit Profile
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             FOOTER
+        ================================================= -->
+
+        <div class="footer">
+
+            CampusConnect — Student Club Recruitment Platform
+
+        </div>
+
+
+    </main>
+
+</body>
+
+</html>
