@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Edit Club Profile - CampusConnect</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            color: #222;
+        }
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        .navbar {
+            background: #111827;
+            color: white;
+
+            padding: 18px 40px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar h2 {
+            margin: 0;
+        }
+
+        .navbar-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+
+        /* =========================
+           CONTAINER
+        ========================= */
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        .header {
+            margin-bottom: 25px;
+        }
+
+        .header h1 {
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            color: #666;
+            margin: 0;
+        }
+
+        /* =========================
+           FORM CARD
+        ========================= */
+
+        .card {
+            background: white;
+
+            padding: 30px;
+
+            border-radius: 12px;
+
+            box-shadow:
+                0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .card h2 {
+            margin-top: 0;
+            margin-bottom: 8px;
+        }
+
+        .card-description {
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        /* =========================
+           ERROR
+        ========================= */
+
+        .error {
+            background: #fee2e2;
+
+            color: #991b1b;
+
+            border: 1px solid #fecaca;
+
+            padding: 12px 15px;
+
+            border-radius: 8px;
+
+            margin-bottom: 20px;
+        }
+
+        /* =========================
+           FORM
+        ========================= */
+
+        .form-group {
+            margin-bottom: 22px;
+        }
+
+        label {
+            display: block;
+
+            font-weight: bold;
+
+            margin-bottom: 7px;
+        }
+
+        .required {
+            color: #dc2626;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+
+            padding: 12px;
+
+            border: 1px solid #d1d5db;
+
+            border-radius: 8px;
+
+            font-size: 15px;
+
+            font-family: inherit;
+
+            background: white;
+        }
+
+        textarea {
+            min-height: 120px;
+
+            resize: vertical;
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: none;
+
+            border-color: #2563eb;
+
+            box-shadow:
+                0 0 0 2px rgba(37, 99, 235, 0.1);
+        }
+
+        .hint {
+            margin-top: 6px;
+
+            font-size: 13px;
+
+            color: #777;
+        }
+
+        /* =========================
+           SECTION
+        ========================= */
+
+        .form-section {
+            margin-bottom: 30px;
+        }
+
+        .form-section h3 {
+            margin-top: 0;
+
+            margin-bottom: 18px;
+
+            padding-bottom: 10px;
+
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        /* =========================
+           PROFILE INFO
+        ========================= */
+
+        .info-box {
+            background: #eff6ff;
+
+            border: 1px solid #bfdbfe;
+
+            color: #1e3a8a;
+
+            padding: 15px;
+
+            border-radius: 9px;
+
+            margin-bottom: 25px;
+        }
+
+        .info-box strong {
+            display: block;
+
+            margin-bottom: 6px;
+        }
+
+        /* =========================
+           BUTTONS
+        ========================= */
+
+        .button-row {
+            display: flex;
+
+            gap: 12px;
+
+            flex-wrap: wrap;
+
+            margin-top: 25px;
+        }
+
+        .button {
+            padding: 12px 20px;
+
+            border: none;
+
+            border-radius: 8px;
+
+            background: #2563eb;
+
+            color: white;
+
+            font-size: 15px;
+
+            cursor: pointer;
+
+            text-decoration: none;
+
+            display: inline-block;
+        }
+
+        .button:hover {
+            background: #1d4ed8;
+        }
+
+        .secondary-button {
+            background: #e5e7eb;
+
+            color: #111827;
+        }
+
+        .secondary-button:hover {
+            background: #d1d5db;
+        }
+
+        /* =========================
+           WARNING
+        ========================= */
+
+        .warning {
+            background: #fff7ed;
+
+            border: 1px solid #fed7aa;
+
+            color: #9a3412;
+
+            padding: 15px;
+
+            border-radius: 9px;
+
+            margin-top: 25px;
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 700px) {
+
+            .navbar {
+                padding: 16px 20px;
+
+                flex-direction: column;
+
+                align-items: flex-start;
+
+                gap: 14px;
+            }
+
+            .navbar-links {
+                flex-wrap: wrap;
+
+                gap: 12px;
+            }
+
+            .container {
+                margin-top: 25px;
+            }
+
+            .card {
+                padding: 20px;
+            }
+
+            .button {
+                width: 100%;
+
+                text-align: center;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+
+    <!-- =========================
+         NAVBAR
+    ========================= -->
+
+    <div class="navbar">
+
+        <h2>
+            CampusConnect
+        </h2>
+
+        <div class="navbar-links">
+
+            <a href="/club/dashboard">
+                Dashboard
+            </a>
+
+            <a href="/club/applications">
+                Applications
+            </a>
+
+            <a href="/club/profile">
+                Club Profile
+            </a>
+
+            <a href="/club/members">
+                Team & Members
+            </a>
+
+            <a href="/logout">
+                Logout
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         MAIN
+    ========================= -->
+
+    <div class="container">
+
+
+        <!-- =========================
+             HEADER
+        ========================= -->
+
+        <div class="header">
+
+            <h1>
+                🏢 Edit Club Profile
+            </h1>
+
+            <p>
+                Update your club information and let students
+                know more about your organization.
+            </p>
+
+        </div>
+
+
+        <!-- =========================
+             FORM CARD
+        ========================= -->
+
+        <div class="card">
+
+            <h2>
+                Club Information
+            </h2>
+
+            <p class="card-description">
+                Keep your club profile accurate and up to date.
+                Students will see this information when exploring
+                your club.
+            </p>
+
+
+            <!-- ERROR -->
+
+            {% if error %}
+
+                <div class="error">
+                    {{ error }}
+                </div>
+
+            {% endif %}
+
+
+            <!-- INFO BOX -->
+
+            <div class="info-box">
+
+                <strong>
+                    💡 Profile Information
+                </strong>
+
+                Make sure your club name, contact information,
+                description and benefits are accurate before
+                saving your changes.
+
+            </div>
+
+
+            <form
+                action="/club/profile"
+                method="POST"
+            >
+
+
+                <!-- =========================
+                     BASIC INFORMATION
+                ========================= -->
+
+                <div class="form-section">
+
+                    <h3>
+                        📋 Basic Information
+                    </h3>
+
+
+                    <!-- CLUB NAME -->
+
+                    <div class="form-group">
+
+                        <label for="club_name">
+
+                            Club Name
+                            <span class="required">*</span>
+
+                        </label>
+
+                        <input
+                            type="text"
+                            id="club_name"
+                            name="club_name"
+                            value="{{ club['club_name'] }}"
+                            placeholder="Enter your club name"
+                            required
+                        >
+
+                        <div class="hint">
+                            The official name of your club.
+                        </div>
+
+                    </div>
+
+
+                    <!-- UNIVERSITY -->
+
+                    <div class="form-group">
+
+                        <label for="university">
+
+                            University
+                            <span class="required">*</span>
+
+                        </label>
+
+                        <input
+                            type="text"
+                            id="university"
+                            name="university"
+                            value="{{ club['university'] }}"
+                            placeholder="Enter your university"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- CATEGORY -->
+
+                    <div class="form-group">
+
+                        <label for="category">
+
+                            Category
+                            <span class="required">*</span>
+
+                        </label>
+
+                        <input
+                            type="text"
+                            id="category"
+                            name="category"
+                            value="{{ club['category'] }}"
+                            placeholder="e.g. Technology, Sports, Cultural"
+                            required
+                        >
+
+                        <div class="hint">
+                            Choose the category that best describes
+                            your club.
+                        </div>
+
+                    </div>
+
+
+                    <!-- EMAIL -->
+
+                    <div class="form-group">
+
+                        <label for="email">
+
+                            Club Email
+                            <span class="required">*</span>
+
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            value="{{ club['email'] }}"
+                            placeholder="club@example.com"
+                            required
+                        >
+
+                        <div class="hint">
+                            Students may use this email to contact
+                            your club.
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =========================
+                     ABOUT CLUB
+                ========================= -->
+
+                <div class="form-section">
+
+                    <h3>
+                        📝 About the Club
+                    </h3>
+
+
+                    <!-- DESCRIPTION -->
+
+                    <div class="form-group">
+
+                        <label for="description">
+
+                            Club Description
+
+                        </label>
+
+                        <textarea
+                            id="description"
+                            name="description"
+                            placeholder="Tell students about your club..."
+                        >{{ club['description'] or '' }}</textarea>
+
+                        <div class="hint">
+                            Explain what your club does, its purpose
+                            and what activities it organizes.
+                        </div>
+
+                    </div>
+
+
+                    <!-- BENEFITS -->
+
+                    <div class="form-group">
+
+                        <label for="benefits">
+
+                            Benefits / What Members Get
+
+                        </label>
+
+                        <textarea
+                            id="benefits"
+                            name="benefits"
+                            placeholder="Workshops, competitions, certificates, networking..."
+                        >{{ club['benefits'] or '' }}</textarea>
+
+                        <div class="hint">
+                            Mention the opportunities and benefits
+                            students receive by joining.
+                        </div>
+
+                    </div>
+
+
+                    <!-- NOTICE -->
+
+                    <div class="form-group">
+
+                        <label for="notice">
+
+                            📢 Notice
+
+                        </label>
+
+                        <textarea
+                            id="notice"
+                            name="notice"
+                            placeholder="Important announcement for students..."
+                        >{{ club['notice'] or '' }}</textarea>
+
+                        <div class="hint">
+                            Add an important announcement or message
+                            that students should know.
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =========================
+                     WARNING
+                ========================= -->
+
+                <div class="warning">
+
+                    <strong>
+                        ⚠️ Before saving
+                    </strong>
+
+                    <br><br>
+
+                    Make sure all the information is accurate.
+                    Your updated profile may be visible to students
+                    browsing clubs.
+
+                </div>
+
+
+                <!-- =========================
+                     BUTTONS
+                ========================= -->
+
+                <div class="button-row">
+
+                    <button
+                        type="submit"
+                        class="button"
+                    >
+                        💾 Save Changes
+                    </button>
+
+                    <a
+                        href="/club/dashboard"
+                        class="button secondary-button"
+                    >
+                        Cancel
+                    </a>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

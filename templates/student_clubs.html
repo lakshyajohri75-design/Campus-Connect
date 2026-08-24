@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Explore Clubs - CampusConnect</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            color: #222;
+        }
+
+        /* ========================= */
+        /* NAVBAR */
+        /* ========================= */
+
+        .navbar {
+            background: #111827;
+            color: white;
+
+            padding: 18px 40px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar h2 {
+            margin: 0;
+        }
+
+        .navbar-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+
+        /* ========================= */
+        /* CONTAINER */
+        /* ========================= */
+
+        .container {
+            max-width: 1100px;
+
+            margin: 40px auto;
+
+            padding: 0 20px;
+        }
+
+        .header {
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            color: #666;
+
+            line-height: 1.5;
+        }
+
+        /* ========================= */
+        /* ERROR */
+        /* ========================= */
+
+        .error {
+            background: #fee2e2;
+
+            color: #991b1b;
+
+            padding: 14px 16px;
+
+            border-radius: 8px;
+
+            margin-bottom: 20px;
+
+            border-left: 4px solid #dc2626;
+        }
+
+        /* ========================= */
+        /* SUCCESS */
+        /* ========================= */
+
+        .success {
+            background: #dcfce7;
+
+            color: #166534;
+
+            padding: 14px 16px;
+
+            border-radius: 8px;
+
+            margin-bottom: 20px;
+
+            border-left: 4px solid #16a34a;
+        }
+
+        /* ========================= */
+        /* CLUB GRID */
+        /* ========================= */
+
+        .club-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(300px, 1fr));
+
+            gap: 22px;
+        }
+
+        /* ========================= */
+        /* CLUB CARD */
+        /* ========================= */
+
+        .club-card {
+            background: white;
+
+            border-radius: 12px;
+
+            padding: 24px;
+
+            box-shadow:
+                0 4px 15px rgba(0, 0, 0, 0.08);
+
+            display: flex;
+
+            flex-direction: column;
+        }
+
+        .club-card h2 {
+            margin-top: 0;
+
+            margin-bottom: 8px;
+        }
+
+        /* ========================= */
+        /* UNIVERSITY */
+        /* ========================= */
+
+        .university {
+            color: #666;
+
+            margin-bottom: 5px;
+        }
+
+        /* ========================= */
+        /* CATEGORY */
+        /* ========================= */
+
+        .category {
+            display: inline-block;
+
+            width: fit-content;
+
+            background: #eef2ff;
+
+            color: #3730a3;
+
+            padding: 6px 10px;
+
+            border-radius: 20px;
+
+            font-size: 13px;
+
+            margin: 10px 0;
+        }
+
+        /* ========================= */
+        /* DESCRIPTION */
+        /* ========================= */
+
+        .description {
+            color: #444;
+
+            line-height: 1.6;
+
+            margin-bottom: 10px;
+        }
+
+        /* ========================= */
+        /* BENEFITS */
+        /* ========================= */
+
+        .benefits {
+            margin-top: 15px;
+
+            line-height: 1.6;
+        }
+
+        .benefits strong {
+            display: block;
+
+            margin-bottom: 5px;
+        }
+
+        /* ========================= */
+        /* NOTICE */
+        /* ========================= */
+
+        .notice {
+            background: #fff7ed;
+
+            border-left: 4px solid #f97316;
+
+            padding: 12px;
+
+            margin-top: 15px;
+
+            line-height: 1.5;
+        }
+
+        /* ========================= */
+        /* STATUS */
+        /* ========================= */
+
+        .status {
+            margin-top: 18px;
+
+            font-weight: bold;
+
+            padding: 9px 12px;
+
+            border-radius: 8px;
+
+            width: fit-content;
+        }
+
+        .open {
+            color: #15803d;
+
+            background: #dcfce7;
+        }
+
+        .closed {
+            color: #dc2626;
+
+            background: #fee2e2;
+        }
+
+        .coming {
+            color: #6b7280;
+
+            background: #f3f4f6;
+        }
+
+        .review {
+            color: #a16207;
+
+            background: #fef9c3;
+        }
+
+        /* ========================= */
+        /* BUTTON */
+        /* ========================= */
+
+        .button {
+            width: 100%;
+
+            margin-top: 18px;
+
+            padding: 12px;
+
+            border: none;
+
+            border-radius: 8px;
+
+            background: #2563eb;
+
+            color: white;
+
+            font-size: 15px;
+
+            cursor: pointer;
+
+            font-weight: bold;
+        }
+
+        .button:hover {
+            background: #1d4ed8;
+        }
+
+        /* ========================= */
+        /* DISABLED BUTTON */
+        /* ========================= */
+
+        .disabled {
+            background: #9ca3af;
+
+            cursor: not-allowed;
+        }
+
+        .disabled:hover {
+            background: #9ca3af;
+        }
+
+        /* ========================= */
+        /* APPLIED BUTTON */
+        /* ========================= */
+
+        .applied {
+            background: #16a34a;
+
+            cursor: default;
+        }
+
+        .applied:hover {
+            background: #16a34a;
+        }
+
+        /* ========================= */
+        /* VIEW APPLICATIONS */
+        /* ========================= */
+
+        .view-applications {
+            display: inline-block;
+
+            width: 100%;
+
+            margin-top: 18px;
+
+            padding: 12px;
+
+            background: #eef2ff;
+
+            color: #3730a3;
+
+            text-align: center;
+
+            text-decoration: none;
+
+            border-radius: 8px;
+
+            font-weight: bold;
+        }
+
+        .view-applications:hover {
+            background: #e0e7ff;
+        }
+
+        /* ========================= */
+        /* EMPTY STATE */
+        /* ========================= */
+
+        .empty {
+            background: white;
+
+            padding: 50px 30px;
+
+            text-align: center;
+
+            border-radius: 12px;
+
+            box-shadow:
+                0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .empty h2 {
+            margin-bottom: 10px;
+        }
+
+        .empty p {
+            color: #666;
+
+            line-height: 1.5;
+        }
+
+        /* ========================= */
+        /* BACK */
+        /* ========================= */
+
+        .back {
+            display: inline-block;
+
+            margin-top: 30px;
+
+            text-decoration: none;
+
+            color: #2563eb;
+        }
+
+        .back:hover {
+            text-decoration: underline;
+        }
+
+        /* ========================= */
+        /* MOBILE */
+        /* ========================= */
+
+        @media (max-width: 700px) {
+
+            .navbar {
+                padding: 16px 20px;
+
+                flex-direction: column;
+
+                align-items: flex-start;
+
+                gap: 14px;
+            }
+
+            .navbar-links {
+                flex-wrap: wrap;
+
+                gap: 12px;
+            }
+
+            .container {
+                margin-top: 25px;
+            }
+
+            .club-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+
+    <!-- ========================= -->
+    <!-- NAVBAR -->
+    <!-- ========================= -->
+
+    <div class="navbar">
+
+        <h2>
+            CampusConnect
+        </h2>
+
+        <div class="navbar-links">
+
+            <a href="/student/dashboard">
+                Dashboard
+            </a>
+
+            <a href="/student/applications">
+                My Applications
+            </a>
+
+            <a href="/student/profile">
+                Profile
+            </a>
+
+            <a href="/logout">
+                Logout
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- ========================= -->
+    <!-- MAIN -->
+    <!-- ========================= -->
+
+    <div class="container">
+
+
+        <!-- ========================= -->
+        <!-- HEADER -->
+        <!-- ========================= -->
+
+        <div class="header">
+
+            <h1>
+                🔎 Explore Clubs
+            </h1>
+
+            <p>
+                Discover clubs, explore opportunities and find
+                communities that match your interests.
+            </p>
+
+        </div>
+
+
+        <!-- ========================= -->
+        <!-- ERROR MESSAGE -->
+        <!-- ========================= -->
+
+        {% if error %}
+
+            <div class="error">
+                {{ error }}
+            </div>
+
+        {% endif %}
+
+
+        <!-- ========================= -->
+        <!-- SUCCESS MESSAGE -->
+        <!-- ========================= -->
+
+        {% if success %}
+
+            <div class="success">
+                {{ success }}
+            </div>
+
+        {% endif %}
+
+
+        <!-- ========================= -->
+        <!-- CLUBS -->
+        <!-- ========================= -->
+
+        {% if clubs %}
+
+            <div class="club-grid">
+
+
+                {% for club in clubs %}
+
+
+                    <div class="club-card">
+
+
+                        <!-- ========================= -->
+                        <!-- CLUB NAME -->
+                        <!-- ========================= -->
+
+                        <h2>
+                            {{ club["club_name"] }}
+                        </h2>
+
+
+                        <!-- ========================= -->
+                        <!-- UNIVERSITY -->
+                        <!-- ========================= -->
+
+                        <div class="university">
+
+                            🏫
+                            {{ club["university"] }}
+
+                        </div>
+
+
+                        <!-- ========================= -->
+                        <!-- CATEGORY -->
+                        <!-- ========================= -->
+
+                        <span class="category">
+
+                            {{ club["category"] }}
+
+                        </span>
+
+
+                        <!-- ========================= -->
+                        <!-- DESCRIPTION -->
+                        <!-- ========================= -->
+
+                        {% if club["description"] %}
+
+                            <p class="description">
+
+                                {{ club["description"] }}
+
+                            </p>
+
+                        {% else %}
+
+                            <p class="description">
+
+                                No description available.
+
+                            </p>
+
+                        {% endif %}
+
+
+                        <!-- ========================= -->
+                        <!-- BENEFITS -->
+                        <!-- ========================= -->
+
+                        {% if club["benefits"] %}
+
+                            <div class="benefits">
+
+                                <strong>
+                                    ✨ Benefits
+                                </strong>
+
+                                <div>
+                                    {{ club["benefits"] }}
+                                </div>
+
+                            </div>
+
+                        {% endif %}
+
+
+                        <!-- ========================= -->
+                        <!-- NOTICE -->
+                        <!-- ========================= -->
+
+                        {% if club["notice"] %}
+
+                            <div class="notice">
+
+                                📢
+
+                                <strong>
+                                    Notice:
+                                </strong>
+
+                                {{ club["notice"] }}
+
+                            </div>
+
+                        {% endif %}
+
+
+                        <!-- ========================= -->
+                        <!-- RECRUITMENT STATUS -->
+                        <!-- ========================= -->
+
+                        {% if club["recruitment_status"] == "Open" %}
+
+
+                            <div class="status open">
+
+                                🟢 Applications Open
+
+                            </div>
+
+
+                            <!-- ========================= -->
+                            <!-- ALREADY APPLIED -->
+                            <!-- ========================= -->
+
+                            {% if club["has_applied"] %}
+
+                                <button
+                                    type="button"
+                                    class="button applied"
+                                    disabled
+                                >
+
+                                    ✅ Already Applied
+
+                                </button>
+
+
+                                <a
+                                    href="/student/applications"
+                                    class="view-applications"
+                                >
+
+                                    📋 View My Application
+
+                                </a>
+
+
+                            {% else %}
+
+
+                                <!-- ========================= -->
+                                <!-- APPLY -->
+                                <!-- ========================= -->
+
+                                <form
+                                    action="/student/apply/{{ club['id'] }}"
+                                    method="POST"
+                                >
+
+                                    <button
+                                        type="submit"
+                                        class="button"
+                                    >
+
+                                        Apply to Join
+
+                                    </button>
+
+                                </form>
+
+                            {% endif %}
+
+
+                        {% elif club["recruitment_status"] == "Coming Soon" %}
+
+
+                            <div class="status coming">
+
+                                ⚪ Recruitment Coming Soon
+
+                            </div>
+
+
+                            <button
+                                type="button"
+                                class="button disabled"
+                                disabled
+                            >
+
+                                Applications Coming Soon
+
+                            </button>
+
+
+                        {% elif club["recruitment_status"] == "Under Review" %}
+
+
+                            <div class="status review">
+
+                                🟡 Recruitment Under Review
+
+                            </div>
+
+
+                            <button
+                                type="button"
+                                class="button disabled"
+                                disabled
+                            >
+
+                                Applications Temporarily Closed
+
+                            </button>
+
+
+                        {% else %}
+
+
+                            <div class="status closed">
+
+                                🔴
+                                {{ club["recruitment_status"] }}
+
+                            </div>
+
+
+                            <button
+                                type="button"
+                                class="button disabled"
+                                disabled
+                            >
+
+                                Applications Closed
+
+                            </button>
+
+
+                        {% endif %}
+
+
+                    </div>
+
+
+                {% endfor %}
+
+
+            </div>
+
+
+        {% else %}
+
+
+            <!-- ========================= -->
+            <!-- EMPTY STATE -->
+            <!-- ========================= -->
+
+            <div class="empty">
+
+                <h2>
+                    No clubs available
+                </h2>
+
+                <p>
+                    There are currently no clubs available.
+                    Check back later.
+                </p>
+
+            </div>
+
+
+        {% endif %}
+
+
+        <!-- ========================= -->
+        <!-- BACK TO DASHBOARD -->
+        <!-- ========================= -->
+
+        <a
+            href="/student/dashboard"
+            class="back"
+        >
+
+            ← Back to Dashboard
+
+        </a>
+
+
+    </div>
+
+
+</body>
+
+</html>

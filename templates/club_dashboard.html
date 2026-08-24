@@ -1,0 +1,1015 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Club Dashboard - CampusConnect</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            color: #222;
+        }
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        .navbar {
+            background: #111827;
+            color: white;
+            padding: 18px 40px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar h2 {
+            margin: 0;
+        }
+
+        .navbar-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+
+        /* =========================
+           CONTAINER
+        ========================= */
+
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        .welcome {
+            margin-bottom: 25px;
+        }
+
+        .welcome h1 {
+            margin-bottom: 8px;
+        }
+
+        .welcome p {
+            color: #666;
+            margin: 0;
+        }
+
+        /* =========================
+           CLUB INFORMATION
+        ========================= */
+
+        .club-info {
+            background: white;
+
+            padding: 25px;
+
+            border-radius: 12px;
+
+            box-shadow:
+                0 4px 15px rgba(0, 0, 0, 0.08);
+
+            margin-bottom: 25px;
+        }
+
+        .club-info h2 {
+            margin-top: 0;
+            margin-bottom: 8px;
+        }
+
+        .club-meta {
+            color: #666;
+            margin: 5px 0;
+        }
+
+        /* =========================
+           GENERAL CARD
+        ========================= */
+
+        .card {
+            background: white;
+
+            padding: 30px;
+
+            border-radius: 12px;
+
+            box-shadow:
+                0 4px 15px rgba(0, 0, 0, 0.08);
+
+            margin-bottom: 25px;
+        }
+
+        .card h2 {
+            margin-top: 0;
+            margin-bottom: 8px;
+        }
+
+        .card > p {
+            color: #666;
+            margin-top: 0;
+            margin-bottom: 25px;
+        }
+
+        /* =========================
+           RECRUITMENT STATUS
+        ========================= */
+
+        .current-status {
+            margin-bottom: 22px;
+
+            padding: 15px;
+
+            background: #f9fafb;
+
+            border-radius: 9px;
+
+            border: 1px solid #e5e7eb;
+        }
+
+        .current-status-label {
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        .status {
+            display: inline-block;
+
+            padding: 6px 12px;
+
+            border-radius: 20px;
+
+            font-size: 13px;
+
+            font-weight: bold;
+        }
+
+        .status-open {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .status-review {
+            background: #fff7ed;
+            color: #9a3412;
+        }
+
+        .status-closed {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .status-coming {
+            background: #f3f4f6;
+            color: #374151;
+        }
+
+        .status-form {
+            display: flex;
+
+            gap: 12px;
+
+            align-items: center;
+
+            flex-wrap: wrap;
+        }
+
+        .status-form label {
+            font-weight: bold;
+        }
+
+        select {
+            padding: 12px;
+
+            border: 1px solid #d1d5db;
+
+            border-radius: 8px;
+
+            font-size: 15px;
+
+            font-family: inherit;
+
+            background: white;
+
+            cursor: pointer;
+        }
+
+        select:focus {
+            outline: none;
+
+            border-color: #2563eb;
+
+            box-shadow:
+                0 0 0 2px rgba(37, 99, 235, 0.1);
+        }
+
+        /* =========================
+           BUTTONS
+        ========================= */
+
+        .button {
+            display: inline-block;
+
+            padding: 12px 20px;
+
+            border: none;
+
+            border-radius: 8px;
+
+            background: #2563eb;
+
+            color: white;
+
+            text-decoration: none;
+
+            font-size: 15px;
+
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background: #1d4ed8;
+        }
+
+        /* =========================
+           STATISTICS
+        ========================= */
+
+        .stats-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(140px, 1fr));
+
+            gap: 15px;
+
+            margin-top: 20px;
+        }
+
+        .stat-card {
+            background: #f9fafb;
+
+            border: 1px solid #e5e7eb;
+
+            border-radius: 10px;
+
+            padding: 20px;
+
+            text-align: center;
+        }
+
+        .stat-number {
+            display: block;
+
+            font-size: 28px;
+
+            font-weight: bold;
+
+            margin-bottom: 7px;
+        }
+
+        .stat-label {
+            color: #666;
+
+            font-size: 14px;
+
+            line-height: 1.4;
+        }
+
+        .stat-action {
+            margin-top: 25px;
+        }
+
+        /* =========================
+           MANAGEMENT
+        ========================= */
+
+        .management-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(250px, 1fr));
+
+            gap: 20px;
+        }
+
+        .management-card {
+            border: 1px solid #e5e7eb;
+
+            border-radius: 10px;
+
+            padding: 20px;
+
+            background: #fafafa;
+        }
+
+        .management-card h3 {
+            margin-top: 0;
+
+            margin-bottom: 10px;
+        }
+
+        .management-card p {
+            color: #666;
+
+            line-height: 1.5;
+
+            margin-bottom: 20px;
+        }
+
+        /* =========================
+           QUICK ACTIONS
+        ========================= */
+
+        .quick-actions {
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(200px, 1fr));
+
+            gap: 15px;
+
+            margin-top: 20px;
+        }
+
+        .quick-action {
+            display: block;
+
+            padding: 20px;
+
+            background: #f9fafb;
+
+            border: 1px solid #e5e7eb;
+
+            border-radius: 10px;
+
+            color: #222;
+
+            text-decoration: none;
+
+            transition:
+                background 0.15s ease,
+                border-color 0.15s ease;
+        }
+
+        .quick-action:hover {
+            background: #eff6ff;
+
+            border-color: #bfdbfe;
+        }
+
+        .quick-action h3 {
+            margin: 0 0 8px 0;
+        }
+
+        .quick-action p {
+            margin: 0;
+
+            font-size: 14px;
+
+            color: #666;
+        }
+
+        /* =========================
+           LOGOUT
+        ========================= */
+
+        .logout-section {
+            text-align: center;
+
+            margin-top: 35px;
+
+            padding-bottom: 30px;
+        }
+
+        .logout-button {
+            background: #dc2626;
+        }
+
+        .logout-button:hover {
+            background: #b91c1c;
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 700px) {
+
+            .navbar {
+                padding: 16px 20px;
+
+                flex-direction: column;
+
+                align-items: flex-start;
+
+                gap: 14px;
+            }
+
+            .navbar-links {
+                flex-wrap: wrap;
+
+                gap: 12px;
+            }
+
+            .container {
+                margin-top: 25px;
+            }
+
+            .club-info,
+            .card {
+                padding: 20px;
+            }
+
+            .status-form {
+                flex-direction: column;
+
+                align-items: stretch;
+            }
+
+            select,
+            .status-form .button {
+                width: 100%;
+            }
+
+            .management-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .quick-actions {
+                grid-template-columns: 1fr;
+            }
+
+            .stat-card {
+                padding: 16px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+
+    <!-- =========================
+         NAVBAR
+    ========================= -->
+
+    <div class="navbar">
+
+        <h2>
+            CampusConnect
+        </h2>
+
+        <div class="navbar-links">
+
+            <a href="/club/dashboard">
+                Dashboard
+            </a>
+
+            <a href="/club/applications">
+                Applications
+            </a>
+
+            <a href="/club/profile">
+                Club Profile
+            </a>
+
+            <a href="/club/members">
+                Team & Members
+            </a>
+
+            <a href="/logout">
+                Logout
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         MAIN
+    ========================= -->
+
+    <div class="container">
+
+
+        <!-- =========================
+             WELCOME
+        ========================= -->
+
+        <div class="welcome">
+
+            <h1>
+                🏢 Club Dashboard
+            </h1>
+
+            <p>
+                Manage your club, recruitment, applications
+                and team members.
+            </p>
+
+        </div>
+
+
+        <!-- =========================
+             CLUB INFORMATION
+        ========================= -->
+
+        <div class="club-info">
+
+            <h2>
+                {{ club["club_name"] }}
+            </h2>
+
+            <div class="club-meta">
+
+                🏫 {{ club["university"] }}
+
+                &nbsp; | &nbsp;
+
+                🏷️ {{ club["category"] }}
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             RECRUITMENT STATUS
+        ========================= -->
+
+        <div class="card">
+
+            <h2>
+                📢 Recruitment Status
+            </h2>
+
+            <p>
+                Control whether students can currently
+                apply to your club.
+            </p>
+
+
+            <div class="current-status">
+
+                <span class="current-status-label">
+                    Current Status:
+                </span>
+
+                {% if recruitment_status == "Open" %}
+
+                    <span class="status status-open">
+                        🟢 Open
+                    </span>
+
+                {% elif recruitment_status == "Under Review" %}
+
+                    <span class="status status-review">
+                        🟡 Under Review
+                    </span>
+
+                {% elif recruitment_status == "Closed" %}
+
+                    <span class="status status-closed">
+                        🔴 Closed
+                    </span>
+
+                {% elif recruitment_status == "Coming Soon" %}
+
+                    <span class="status status-coming">
+                        ⚪ Coming Soon
+                    </span>
+
+                {% else %}
+
+                    <span class="status status-coming">
+                        {{ recruitment_status }}
+                    </span>
+
+                {% endif %}
+
+            </div>
+
+
+            <form
+                action="/club/status"
+                method="POST"
+                class="status-form"
+            >
+
+                <label for="status">
+                    Change Status:
+                </label>
+
+                <select
+                    name="status"
+                    id="status"
+                >
+
+                    <option
+                        value="Open"
+                        {% if recruitment_status == "Open" %}
+                            selected
+                        {% endif %}
+                    >
+                        🟢 Open
+                    </option>
+
+                    <option
+                        value="Under Review"
+                        {% if recruitment_status == "Under Review" %}
+                            selected
+                        {% endif %}
+                    >
+                        🟡 Under Review
+                    </option>
+
+                    <option
+                        value="Closed"
+                        {% if recruitment_status == "Closed" %}
+                            selected
+                        {% endif %}
+                    >
+                        🔴 Closed
+                    </option>
+
+                    <option
+                        value="Coming Soon"
+                        {% if recruitment_status == "Coming Soon" %}
+                            selected
+                        {% endif %}
+                    >
+                        ⚪ Coming Soon
+                    </option>
+
+                </select>
+
+                <button
+                    type="submit"
+                    class="button"
+                >
+                    Update Status
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <!-- =========================
+             APPLICATION STATISTICS
+        ========================= -->
+
+        <div class="card">
+
+            <h2>
+                📊 Application Overview
+            </h2>
+
+            <p>
+                See how students are progressing through
+                your recruitment process.
+            </p>
+
+
+            <div class="stats-grid">
+
+
+                <!-- TOTAL -->
+
+                <div class="stat-card">
+
+                    <span class="stat-number">
+                        {{ stats["total"] or 0 }}
+                    </span>
+
+                    <span class="stat-label">
+                        Total Applications
+                    </span>
+
+                </div>
+
+
+                <!-- PENDING -->
+
+                <div class="stat-card">
+
+                    <span class="stat-number">
+                        {{ stats["pending"] or 0 }}
+                    </span>
+
+                    <span class="stat-label">
+                        📨 Pending
+                    </span>
+
+                </div>
+
+
+                <!-- UNDER REVIEW -->
+
+                <div class="stat-card">
+
+                    <span class="stat-number">
+                        {{ stats["under_review"] or 0 }}
+                    </span>
+
+                    <span class="stat-label">
+                        🔍 Under Review
+                    </span>
+
+                </div>
+
+
+                <!-- TEST -->
+
+                <div class="stat-card">
+
+                    <span class="stat-number">
+                        {{ stats["eligible_test"] or 0 }}
+                    </span>
+
+                    <span class="stat-label">
+                        🧪 Eligible for Test
+                    </span>
+
+                </div>
+
+
+                <!-- INTERVIEW -->
+
+                <div class="stat-card">
+
+                    <span class="stat-number">
+                        {{ stats["eligible_interview"] or 0 }}
+                    </span>
+
+                    <span class="stat-label">
+                        🎤 Eligible for Interview
+                    </span>
+
+                </div>
+
+
+                <!-- SELECTED -->
+
+                <div class="stat-card">
+
+                    <span class="stat-number">
+                        {{ stats["selected"] or 0 }}
+                    </span>
+
+                    <span class="stat-label">
+                        ✅ Selected
+                    </span>
+
+                </div>
+
+
+                <!-- REJECTED -->
+
+                <div class="stat-card">
+
+                    <span class="stat-number">
+                        {{ stats["rejected"] or 0 }}
+                    </span>
+
+                    <span class="stat-label">
+                        ❌ Rejected
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-action">
+
+                <a
+                    href="/club/applications"
+                    class="button"
+                >
+                    📋 View All Applications
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             CLUB MANAGEMENT
+        ========================= -->
+
+        <div class="card">
+
+            <h2>
+                🛠️ Club Management
+            </h2>
+
+            <p>
+                Manage your club information, applications
+                and team members.
+            </p>
+
+
+            <div class="management-grid">
+
+
+                <!-- PROFILE -->
+
+                <div class="management-card">
+
+                    <h3>
+                        🏢 Club Profile
+                    </h3>
+
+                    <p>
+                        Update your club name, university,
+                        category, description, benefits
+                        and recruitment information.
+                    </p>
+
+                    <a
+                        href="/club/profile"
+                        class="button"
+                    >
+                        Edit Club Profile
+                    </a>
+
+                </div>
+
+
+                <!-- APPLICATIONS -->
+
+                <div class="management-card">
+
+                    <h3>
+                        📋 Applications
+                    </h3>
+
+                    <p>
+                        Review student applications and
+                        update their recruitment status.
+                    </p>
+
+                    <a
+                        href="/club/applications"
+                        class="button"
+                    >
+                        Manage Applications
+                    </a>
+
+                </div>
+
+
+                <!-- TEAM & MEMBERS -->
+
+                <div class="management-card">
+
+                    <h3>
+                        👥 Team & Members
+                    </h3>
+
+                    <p>
+                        Add team members, assign roles and
+                        manage the people who are part of
+                        your club.
+                    </p>
+
+                    <a
+                        href="/club/members"
+                        class="button"
+                    >
+                        Manage Team & Members
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             QUICK ACTIONS
+        ========================= -->
+
+        <div class="card">
+
+            <h2>
+                ⚡ Quick Actions
+            </h2>
+
+            <p>
+                Quickly access the most important club features.
+            </p>
+
+
+            <div class="quick-actions">
+
+
+                <a
+                    href="/club/applications"
+                    class="quick-action"
+                >
+
+                    <h3>
+                        📋 Applications
+                    </h3>
+
+                    <p>
+                        Review and update student applications.
+                    </p>
+
+                </a>
+
+
+                <a
+                    href="/club/members"
+                    class="quick-action"
+                >
+
+                    <h3>
+                        👥 Team & Members
+                    </h3>
+
+                    <p>
+                        Add, view and remove club team members.
+                    </p>
+
+                </a>
+
+
+                <a
+                    href="/club/profile"
+                    class="quick-action"
+                >
+
+                    <h3>
+                        🏢 Club Profile
+                    </h3>
+
+                    <p>
+                        Update your club information.
+                    </p>
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             LOGOUT
+        ========================= -->
+
+        <div class="logout-section">
+
+            <a
+                href="/logout"
+                class="button logout-button"
+            >
+                Logout
+            </a>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
+```

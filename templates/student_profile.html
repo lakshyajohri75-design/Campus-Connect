@@ -1,0 +1,599 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Profile - CampusConnect</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            color: #222;
+        }
+
+        .navbar {
+            background: #111827;
+            color: white;
+            padding: 18px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar h2 {
+            margin: 0;
+        }
+
+        .navbar-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .header {
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            margin: 0 0 8px 0;
+        }
+
+        .header p {
+            margin: 0;
+            color: #666;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 14px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .error {
+            background: #fee2e2;
+            color: #991b1b;
+            border: 1px solid #fecaca;
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .success {
+            background: #dcfce7;
+            color: #166534;
+            border: 1px solid #bbf7d0;
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .progress-box {
+            margin-bottom: 25px;
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: #e5e7eb;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #2563eb;
+            border-radius: 20px;
+        }
+
+        .info-box {
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            color: #1e3a8a;
+            padding: 15px;
+            border-radius: 9px;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+
+        .info-box strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .status-box {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .status-item {
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            padding: 15px;
+        }
+
+        .status-item strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .status-item span {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .full {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 7px;
+        }
+
+        .required {
+            color: #dc2626;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 15px;
+            font-family: inherit;
+            background: white;
+        }
+
+        textarea {
+            min-height: 110px;
+            resize: vertical;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+        }
+
+        .hint {
+            font-size: 13px;
+            color: #777;
+            margin-top: 6px;
+        }
+
+        .button-row {
+            margin-top: 25px;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .button {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            background: #2563eb;
+            color: white;
+            font-size: 15px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .button:hover {
+            background: #1d4ed8;
+        }
+
+        .secondary-button {
+            background: #e5e7eb;
+            color: #111827;
+        }
+
+        .secondary-button:hover {
+            background: #d1d5db;
+        }
+
+        @media (max-width: 700px) {
+            .navbar {
+                padding: 16px 20px;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 14px;
+            }
+
+            .navbar-links {
+                flex-wrap: wrap;
+                gap: 12px;
+            }
+
+            .container {
+                margin-top: 25px;
+            }
+
+            .card {
+                padding: 20px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .full {
+                grid-column: auto;
+            }
+
+            .status-box {
+                grid-template-columns: 1fr;
+            }
+
+            .button {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="navbar">
+
+        <h2>CampusConnect</h2>
+
+        <div class="navbar-links">
+            <a href="/student/dashboard">Dashboard</a>
+            <a href="/student/clubs">Explore Clubs</a>
+            <a href="/student/applications">My Applications</a>
+            <a href="/student/profile">Profile</a>
+            <a href="/logout">Logout</a>
+        </div>
+
+    </div>
+
+    <div class="container">
+
+        <div class="header">
+
+            <h1>👤 Student Profile</h1>
+
+            <p>
+                Complete your profile so clubs can understand
+                your interests, skills and goals.
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            {% if error %}
+            <div class="error">
+                {{ error }}
+            </div>
+            {% endif %}
+
+            {% if success %}
+            <div class="success">
+                {{ success }}
+            </div>
+            {% endif %}
+
+            <div class="progress-box">
+
+                <div class="progress-header">
+                    <span>Profile Completion</span>
+                    <span>{{ profile_completion }}%</span>
+                </div>
+
+                <div class="progress-bar">
+
+                    <div
+                        class="progress-fill"
+                        style="width: {{ profile_completion }}%;"
+                    ></div>
+
+                </div>
+
+            </div>
+
+            <div class="info-box">
+
+                <strong>💡 Complete your profile</strong>
+
+                Your course, interests, skills and goals will help
+                you present yourself better when applying to clubs.
+
+            </div>
+
+            <div class="status-box">
+
+                <div class="status-item">
+
+                    <strong>🎓 Course</strong>
+
+                    <span>
+                        {% if student["course"] %}
+                            {{ student["course"] }}
+                        {% else %}
+                            Not added yet
+                        {% endif %}
+                    </span>
+
+                </div>
+
+                <div class="status-item">
+
+                    <strong>📅 Year</strong>
+
+                    <span>
+                        {% if student["year"] %}
+                            {{ student["year"] }}
+                        {% else %}
+                            Not added yet
+                        {% endif %}
+                    </span>
+
+                </div>
+
+                <div class="status-item">
+
+                    <strong>🛠 Skills</strong>
+
+                    <span>
+                        {% if student["skills"] %}
+                            Added
+                        {% else %}
+                            Not added yet
+                        {% endif %}
+                    </span>
+
+                </div>
+
+            </div>
+
+            <form
+                action="/student/profile"
+                method="POST"
+            >
+
+                <div class="form-grid">
+
+                    <div>
+
+                        <label for="name">
+                            Full Name
+                            <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            value="{{ student['name'] }}"
+                            placeholder="Your full name"
+                            required
+                        >
+
+                    </div>
+
+                    <div>
+
+                        <label for="email">
+                            Email
+                            <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            value="{{ student['email'] }}"
+                            placeholder="Your email"
+                            required
+                        >
+
+                    </div>
+
+                    <div>
+
+                        <label for="course">
+                            Course / Degree
+                        </label>
+
+                        <input
+                            type="text"
+                            id="course"
+                            name="course"
+                            value="{{ student['course'] }}"
+                            placeholder="e.g. B.Tech Computer Science"
+                        >
+
+                    </div>
+
+                    <div>
+
+                        <label for="year">
+                            Year of Study
+                        </label>
+
+                        <select id="year" name="year">
+
+                            <option value="">
+                                Select Year
+                            </option>
+
+                            <option
+                                value="1st Year"
+                                {% if student["year"] == "1st Year" %}
+                                selected
+                                {% endif %}
+                            >
+                                1st Year
+                            </option>
+
+                            <option
+                                value="2nd Year"
+                                {% if student["year"] == "2nd Year" %}
+                                selected
+                                {% endif %}
+                            >
+                                2nd Year
+                            </option>
+
+                            <option
+                                value="3rd Year"
+                                {% if student["year"] == "3rd Year" %}
+                                selected
+                                {% endif %}
+                            >
+                                3rd Year
+                            </option>
+
+                            <option
+                                value="4th Year"
+                                {% if student["year"] == "4th Year" %}
+                                selected
+                                {% endif %}
+                            >
+                                4th Year
+                            </option>
+
+                            <option
+                                value="Postgraduate"
+                                {% if student["year"] == "Postgraduate" %}
+                                selected
+                                {% endif %}
+                            >
+                                Postgraduate
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="full">
+
+                        <label for="interests">
+                            Interests
+                        </label>
+
+                        <textarea
+                            id="interests"
+                            name="interests"
+                            placeholder="e.g. Web development, robotics, entrepreneurship, photography..."
+                        >{{ student['interests'] }}</textarea>
+
+                        <div class="hint">
+                            Separate multiple interests with commas.
+                        </div>
+
+                    </div>
+
+                    <div class="full">
+
+                        <label for="skills">
+                            Skills
+                        </label>
+
+                        <textarea
+                            id="skills"
+                            name="skills"
+                            placeholder="e.g. Python, Java, public speaking, graphic design, leadership..."
+                        >{{ student['skills'] }}</textarea>
+
+                        <div class="hint">
+                            Separate multiple skills with commas.
+                        </div>
+
+                    </div>
+
+                    <div class="full">
+
+                        <label for="goals">
+                            Goals
+                        </label>
+
+                        <textarea
+                            id="goals"
+                            name="goals"
+                            placeholder="What do you want to achieve through clubs and university activities?"
+                        >{{ student['goals'] }}</textarea>
+
+                    </div>
+
+                </div>
+
+                <div class="button-row">
+
+                    <button
+                        type="submit"
+                        class="button"
+                    >
+                        💾 Save Profile
+                    </button>
+
+                    <a
+                        href="/student/dashboard"
+                        class="button secondary-button"
+                    >
+                        ← Back to Dashboard
+                    </a>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
+```

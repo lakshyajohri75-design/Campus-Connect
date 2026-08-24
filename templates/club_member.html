@@ -1,0 +1,716 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Team & Members - CampusConnect</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            color: #222;
+        }
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        .navbar {
+            background: #111827;
+            color: white;
+            padding: 18px 40px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar h2 {
+            margin: 0;
+        }
+
+        .navbar-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+
+        /* =========================
+           CONTAINER
+        ========================= */
+
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        .header {
+            margin-bottom: 25px;
+        }
+
+        .header h1 {
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            color: #666;
+            margin: 0;
+        }
+
+        /* =========================
+           CARD
+        ========================= */
+
+        .card {
+            background: white;
+
+            padding: 30px;
+
+            border-radius: 12px;
+
+            margin-bottom: 25px;
+
+            box-shadow:
+                0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .card h2 {
+            margin-top: 0;
+            margin-bottom: 8px;
+        }
+
+        .card > p {
+            color: #666;
+            margin-top: 0;
+            margin-bottom: 25px;
+        }
+
+        /* =========================
+           ADD MEMBER FORM
+        ========================= */
+
+        .form-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(200px, 1fr));
+
+            gap: 18px;
+
+            margin-top: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 0;
+        }
+
+        label {
+            display: block;
+
+            font-weight: bold;
+
+            margin-bottom: 7px;
+        }
+
+        input,
+        select {
+            width: 100%;
+
+            padding: 12px;
+
+            border: 1px solid #d1d5db;
+
+            border-radius: 8px;
+
+            font-size: 15px;
+
+            font-family: inherit;
+
+            background: white;
+        }
+
+        input:focus,
+        select:focus {
+            outline: none;
+
+            border-color: #2563eb;
+
+            box-shadow:
+                0 0 0 2px rgba(37, 99, 235, 0.1);
+        }
+
+        .hint {
+            margin-top: 6px;
+
+            font-size: 13px;
+
+            color: #777;
+        }
+
+        /* =========================
+           BUTTON
+        ========================= */
+
+        .button {
+            display: inline-block;
+
+            margin-top: 25px;
+
+            padding: 12px 20px;
+
+            border: none;
+
+            border-radius: 8px;
+
+            background: #2563eb;
+
+            color: white;
+
+            font-size: 15px;
+
+            cursor: pointer;
+
+            text-decoration: none;
+        }
+
+        .button:hover {
+            background: #1d4ed8;
+        }
+
+        /* =========================
+           MEMBERS
+        ========================= */
+
+        .members {
+            display: grid;
+
+            gap: 15px;
+        }
+
+        .member {
+            padding: 20px;
+
+            border: 1px solid #e5e7eb;
+
+            border-radius: 10px;
+
+            background: #fafafa;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 20px;
+        }
+
+        .member h3 {
+            margin: 0 0 8px 0;
+        }
+
+        .member p {
+            margin: 3px 0 8px 0;
+
+            color: #666;
+        }
+
+        /* =========================
+           ROLE BADGE
+        ========================= */
+
+        .role {
+            display: inline-block;
+
+            margin-top: 3px;
+
+            padding: 6px 12px;
+
+            border-radius: 20px;
+
+            background: #eff6ff;
+
+            color: #1e3a8a;
+
+            font-size: 13px;
+
+            font-weight: bold;
+        }
+
+        /* =========================
+           REMOVE BUTTON
+        ========================= */
+
+        .remove-button {
+            padding: 10px 16px;
+
+            border: none;
+
+            border-radius: 8px;
+
+            background: #dc2626;
+
+            color: white;
+
+            cursor: pointer;
+
+            font-size: 14px;
+        }
+
+        .remove-button:hover {
+            background: #b91c1c;
+        }
+
+        /* =========================
+           EMPTY STATE
+        ========================= */
+
+        .empty {
+            background: #f9fafb;
+
+            border: 1px solid #e5e7eb;
+
+            padding: 40px 25px;
+
+            text-align: center;
+
+            border-radius: 10px;
+        }
+
+        .empty h3 {
+            margin-top: 0;
+
+            margin-bottom: 8px;
+        }
+
+        .empty p {
+            margin: 0;
+
+            color: #666;
+        }
+
+        /* =========================
+           INFO BOX
+        ========================= */
+
+        .info-box {
+            background: #eff6ff;
+
+            border: 1px solid #bfdbfe;
+
+            color: #1e3a8a;
+
+            padding: 15px;
+
+            border-radius: 9px;
+
+            margin-bottom: 25px;
+        }
+
+        .info-box strong {
+            display: block;
+
+            margin-bottom: 6px;
+        }
+
+        /* =========================
+           BACK LINK
+        ========================= */
+
+        .back {
+            display: inline-block;
+
+            margin-top: 5px;
+
+            color: #2563eb;
+
+            text-decoration: none;
+        }
+
+        .back:hover {
+            text-decoration: underline;
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 700px) {
+
+            .navbar {
+                padding: 16px 20px;
+
+                flex-direction: column;
+
+                align-items: flex-start;
+
+                gap: 14px;
+            }
+
+            .navbar-links {
+                flex-wrap: wrap;
+
+                gap: 12px;
+            }
+
+            .container {
+                margin-top: 25px;
+            }
+
+            .card {
+                padding: 20px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .member {
+                flex-direction: column;
+
+                align-items: flex-start;
+            }
+
+            .remove-button {
+                width: 100%;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+
+    <!-- =========================
+         NAVBAR
+    ========================= -->
+
+    <div class="navbar">
+
+        <h2>
+            CampusConnect
+        </h2>
+
+        <div class="navbar-links">
+
+            <a href="/club/dashboard">
+                Dashboard
+            </a>
+
+            <a href="/club/applications">
+                Applications
+            </a>
+
+            <a href="/club/profile">
+                Club Profile
+            </a>
+
+            <a href="/club/members">
+                Team & Members
+            </a>
+
+            <a href="/logout">
+                Logout
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         MAIN
+    ========================= -->
+
+    <div class="container">
+
+
+        <!-- =========================
+             HEADER
+        ========================= -->
+
+        <div class="header">
+
+            <h1>
+                👥 Team & Members
+            </h1>
+
+            <p>
+                Manage your club team and organize your members.
+            </p>
+
+        </div>
+
+
+        <!-- =========================
+             ADD MEMBER
+        ========================= -->
+
+        <div class="card">
+
+            <h2>
+                ➕ Add Team Member
+            </h2>
+
+            <p>
+                Add a member manually to your club team.
+            </p>
+
+
+            <!-- INFO BOX -->
+
+            <div class="info-box">
+
+                <strong>
+                    💡 Team Management
+                </strong>
+
+                Add your club's team members and assign
+                them the appropriate role.
+
+            </div>
+
+
+            <form
+                action="/club/members/add"
+                method="POST"
+            >
+
+                <div class="form-grid">
+
+
+                    <!-- NAME -->
+
+                    <div class="form-group">
+
+                        <label for="name">
+                            Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            placeholder="Member name"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- EMAIL -->
+
+                    <div class="form-group">
+
+                        <label for="email">
+                            Email
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="Member email"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- ROLE -->
+
+                    <div class="form-group">
+
+                        <label for="role">
+                            Role
+                        </label>
+
+                        <select
+                            id="role"
+                            name="role"
+                            required
+                        >
+
+                            <option value="">
+                                Select Role
+                            </option>
+
+                            <option value="President">
+                                President
+                            </option>
+
+                            <option value="Vice President">
+                                Vice President
+                            </option>
+
+                            <option value="Secretary">
+                                Secretary
+                            </option>
+
+                            <option value="Treasurer">
+                                Treasurer
+                            </option>
+
+                            <option value="Team Lead">
+                                Team Lead
+                            </option>
+
+                            <option value="Member">
+                                Member
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="button"
+                >
+                    Add Member
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <!-- =========================
+             CURRENT MEMBERS
+        ========================= -->
+
+        <div class="card">
+
+            <h2>
+                👥 Current Members
+            </h2>
+
+            <p>
+                View and manage everyone currently
+                registered as part of your club team.
+            </p>
+
+
+            {% if members %}
+
+                <div class="members">
+
+                    {% for member in members %}
+
+                        <div class="member">
+
+                            <div>
+
+                                <h3>
+                                    {{ member["name"] }}
+                                </h3>
+
+                                <p>
+                                    📧 {{ member["email"] }}
+                                </p>
+
+                                <span class="role">
+                                    {{ member["role"] }}
+                                </span>
+
+                            </div>
+
+
+                            <!-- REMOVE MEMBER -->
+
+                            <form
+                                action="/club/members/{{ member['id'] }}/remove"
+                                method="POST"
+                                onsubmit="return confirm('Are you sure you want to remove this member?');"
+                            >
+
+                                <button
+                                    type="submit"
+                                    class="remove-button"
+                                >
+                                    Remove
+                                </button>
+
+                            </form>
+
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+
+            {% else %}
+
+
+                <!-- =========================
+                     EMPTY STATE
+                ========================= -->
+
+                <div class="empty">
+
+                    <h3>
+                        📭 No Team Members Yet
+                    </h3>
+
+                    <p>
+                        Add your first team member using
+                        the form above.
+                    </p>
+
+                </div>
+
+            {% endif %}
+
+        </div>
+
+
+        <!-- =========================
+             BACK TO DASHBOARD
+        ========================= -->
+
+        <a
+            href="/club/dashboard"
+            class="back"
+        >
+            ← Back to Club Dashboard
+        </a>
+
+    </div>
+
+</body>
+
+</html>
+```

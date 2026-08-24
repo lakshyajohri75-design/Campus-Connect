@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Club Registration - CampusConnect</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            color: #222;
+        }
+
+        .navbar {
+            background: #111827;
+            color: white;
+            padding: 18px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar h2 {
+            margin: 0;
+        }
+
+        .navbar-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .header {
+            margin-bottom: 25px;
+        }
+
+        .header h1 {
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            color: #666;
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .card h2 {
+            margin-top: 0;
+            margin-bottom: 8px;
+        }
+
+        .card-description {
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        .info-box {
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            color: #1e3a8a;
+            padding: 15px;
+            border-radius: 9px;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+
+        .info-box strong {
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        /* Error message from Flask */
+        .error-box {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            color: #991b1b;
+            padding: 14px 16px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+
+        .form-group {
+            margin-bottom: 22px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 7px;
+        }
+
+        .required {
+            color: #dc2626;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 15px;
+            font-family: inherit;
+            background: white;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+        }
+
+        .hint {
+            margin-top: 6px;
+            font-size: 13px;
+            color: #777;
+        }
+
+        .password-note {
+            margin-top: 6px;
+            font-size: 13px;
+            color: #777;
+        }
+
+        .button-row {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 25px;
+        }
+
+        .button {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            background: #2563eb;
+            color: white;
+            font-size: 15px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .button:hover {
+            background: #1d4ed8;
+        }
+
+        .secondary-button {
+            background: #e5e7eb;
+            color: #111827;
+        }
+
+        .secondary-button:hover {
+            background: #d1d5db;
+        }
+
+        .login-section {
+            text-align: center;
+            margin-top: 25px;
+            color: #666;
+        }
+
+        .login-section a {
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .login-section a:hover {
+            text-decoration: underline;
+        }
+
+        .footer {
+            text-align: center;
+            color: #777;
+            font-size: 13px;
+            margin-top: 30px;
+            padding-bottom: 30px;
+        }
+
+        @media (max-width: 700px) {
+            .navbar {
+                padding: 16px 20px;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 14px;
+            }
+
+            .navbar-links {
+                flex-wrap: wrap;
+                gap: 12px;
+            }
+
+            .container {
+                margin-top: 25px;
+            }
+
+            .card {
+                padding: 20px;
+            }
+
+            .button {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="navbar">
+
+        <h2>
+            CampusConnect
+        </h2>
+
+        <div class="navbar-links">
+
+            <a href="/">
+                Home
+            </a>
+
+            <a href="/login">
+                Login
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="container">
+
+        <div class="header">
+
+            <h1>
+                🏢 Create Club Account
+            </h1>
+
+            <p>
+                Register your club on CampusConnect and start
+                managing students, applications and your club team.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <h2>
+                Club Registration
+            </h2>
+
+            <p class="card-description">
+                Enter your club details below to create your
+                CampusConnect account.
+            </p>
+
+
+            <div class="info-box">
+
+                <strong>
+                    💡 Before you begin
+                </strong>
+
+                Make sure the club information you enter is
+                accurate. You can update your club profile
+                later from the Club Dashboard.
+
+            </div>
+
+
+            {% if error %}
+
+            <div class="error-box">
+                <strong>Registration failed:</strong>
+                {{ error }}
+            </div>
+
+            {% endif %}
+
+
+            <form method="POST" action="{{ url_for('club_register') }}">
+
+                <div class="form-group">
+
+                    <label for="club_name">
+                        Club Name
+                        <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="club_name"
+                        name="club_name"
+                        value="{{ request.form.get('club_name', '') }}"
+                        placeholder="Enter your club name"
+                        required
+                    >
+
+                    <div class="hint">
+                        Enter the official name of your club.
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="university">
+                        University
+                        <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="university"
+                        name="university"
+                        value="{{ request.form.get('university', '') }}"
+                        placeholder="Enter your university"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="category">
+                        Club Category
+                        <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="category"
+                        name="category"
+                        value="{{ request.form.get('category', '') }}"
+                        placeholder="Robotics, Coding, Sports..."
+                        required
+                    >
+
+                    <div class="hint">
+                        Example: Technology, Robotics, Sports,
+                        Cultural, Entrepreneurship, Music, etc.
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="email">
+                        Club Email
+                        <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value="{{ request.form.get('email', '') }}"
+                        placeholder="club@example.com"
+                        required
+                    >
+
+                    <div class="hint">
+                        Use an email address that the club can
+                        access and manage.
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="password">
+                        Password
+                        <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Create a secure password"
+                        required
+                    >
+
+                    <div class="password-note">
+                        Password must contain at least 6 characters.
+                    </div>
+
+                </div>
+
+
+                <div class="button-row">
+
+                    <button
+                        type="submit"
+                        class="button"
+                    >
+                        🚀 Create Club
+                    </button>
+
+                    <a
+                        href="/login"
+                        class="button secondary-button"
+                    >
+                        Back to Login
+                    </a>
+
+                </div>
+
+            </form>
+
+        </div>
+
+
+        <div class="login-section">
+
+            Already have a club account?
+
+            <a href="/login?type=club">
+                Login here
+            </a>
+
+        </div>
+
+
+        <div class="footer">
+
+            CampusConnect — Connect. Participate. Grow.
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Student - CampusConnect</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            color: #222;
+        }
+
+        /* ========================= */
+        /* NAVBAR */
+        /* ========================= */
+
+        .navbar {
+            background: #111827;
+            color: white;
+
+            padding: 18px 40px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar h2 {
+            margin: 0;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+
+        /* ========================= */
+        /* MAIN */
+        /* ========================= */
+
+        .container {
+            max-width: 850px;
+
+            margin: 70px auto;
+
+            padding: 0 20px;
+        }
+
+        .header {
+            text-align: center;
+
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #666;
+
+            font-size: 17px;
+
+            line-height: 1.6;
+        }
+
+        /* ========================= */
+        /* OPTIONS */
+        /* ========================= */
+
+        .options {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+
+            padding: 30px;
+
+            border-radius: 14px;
+
+            box-shadow:
+                0 4px 15px rgba(0, 0, 0, 0.08);
+
+            text-align: center;
+        }
+
+        .card h2 {
+            margin-top: 0;
+
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            color: #666;
+
+            line-height: 1.6;
+
+            min-height: 55px;
+        }
+
+        /* ========================= */
+        /* BUTTON */
+        /* ========================= */
+
+        .button {
+            display: inline-block;
+
+            margin-top: 15px;
+
+            padding: 12px 22px;
+
+            background: #2563eb;
+
+            color: white;
+
+            text-decoration: none;
+
+            border-radius: 8px;
+
+            font-weight: bold;
+        }
+
+        .button:hover {
+            background: #1d4ed8;
+        }
+
+        .secondary-button {
+            background: #111827;
+        }
+
+        .secondary-button:hover {
+            background: #1f2937;
+        }
+
+        /* ========================= */
+        /* BACK */
+        /* ========================= */
+
+        .back {
+            display: block;
+
+            text-align: center;
+
+            margin-top: 35px;
+
+            color: #2563eb;
+
+            text-decoration: none;
+        }
+
+        .back:hover {
+            text-decoration: underline;
+        }
+
+        /* ========================= */
+        /* MOBILE */
+        /* ========================= */
+
+        @media (max-width: 700px) {
+
+            .navbar {
+                padding: 16px 20px;
+            }
+
+            .container {
+                margin-top: 40px;
+            }
+
+            .options {
+                grid-template-columns: 1fr;
+            }
+
+            .card {
+                padding: 25px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+
+    <!-- ========================= -->
+    <!-- NAVBAR -->
+    <!-- ========================= -->
+
+    <div class="navbar">
+
+        <h2>
+            🎓 CampusConnect
+        </h2>
+
+        <a href="/">
+            Home
+        </a>
+
+    </div>
+
+
+    <!-- ========================= -->
+    <!-- MAIN CONTAINER -->
+    <!-- ========================= -->
+
+    <div class="container">
+
+
+        <!-- ========================= -->
+        <!-- HEADER -->
+        <!-- ========================= -->
+
+        <div class="header">
+
+            <h1>
+                🎓 Student
+            </h1>
+
+            <p>
+                Find clubs, discover opportunities,
+                apply to clubs, and track your applications.
+            </p>
+
+        </div>
+
+
+        <!-- ========================= -->
+        <!-- LOGIN / REGISTER -->
+        <!-- ========================= -->
+
+        <div class="options">
+
+
+            <!-- LOGIN -->
+
+            <div class="card">
+
+                <h2>
+                    Already have an account?
+                </h2>
+
+                <p>
+                    Login to access your student dashboard,
+                    applications, and profile.
+                </p>
+
+                <a
+                    href="/login?type=student"
+                    class="button"
+                >
+                    Student Login
+                </a>
+
+            </div>
+
+
+            <!-- REGISTER -->
+
+            <div class="card">
+
+                <h2>
+                    New to CampusConnect?
+                </h2>
+
+                <p>
+                    Create your student account and start
+                    discovering campus clubs.
+                </p>
+
+                <a
+                    href="/student/register"
+                    class="button secondary-button"
+                >
+                    Student Register
+                </a>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- ========================= -->
+        <!-- BACK -->
+        <!-- ========================= -->
+
+        <a
+            href="/"
+            class="back"
+        >
+            ← Back to Home
+        </a>
+
+    </div>
+
+
+</body>
+
+</html>

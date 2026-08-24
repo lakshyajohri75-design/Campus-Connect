@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Student Dashboard - CampusConnect</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <h1>🎓 Student Dashboard</h1>
+
+    <h2>
+        Welcome, {{ student_name }}! 👋
+    </h2>
+
+    <p>
+        Find clubs, explore opportunities and track your applications.
+    </p>
+
+    <hr>
+
+
+    <!-- ========================= -->
+    <!-- EXPLORE CLUBS -->
+    <!-- ========================= -->
+
+    <h3>🔎 Explore Clubs</h3>
+
+    <p>
+        Discover clubs available at your university and apply to join them.
+    </p>
+
+    <a href="/student/clubs">
+        <button type="button">
+            Explore Clubs
+        </button>
+    </a>
+
+
+    <hr>
+
+
+    <!-- ========================= -->
+    <!-- MY APPLICATIONS -->
+    <!-- ========================= -->
+
+    <h3>📋 My Applications</h3>
+
+    <p>
+        Track your applications and see your recruitment progress.
+    </p>
+
+    <a href="/student/applications">
+        <button type="button">
+            View My Applications
+        </button>
+    </a>
+
+
+    <hr>
+
+
+    <!-- ========================= -->
+    <!-- MY PROFILE -->
+    <!-- ========================= -->
+
+    <h3>👤 My Profile</h3>
+
+    <p>
+        View and edit your personal information.
+    </p>
+
+    <a href="/student/profile">
+        <button type="button">
+            View / Edit Profile
+        </button>
+    </a>
+
+
+    <hr>
+
+
+    <!-- ========================= -->
+    <!-- LOGOUT -->
+    <!-- ========================= -->
+
+    <a href="/logout">
+        <button type="button">
+            Logout
+        </button>
+    </a>
+
+</body>
+
+</html>

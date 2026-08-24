@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+```
+<title>Apply to Club - CampusConnect</title>
+
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}">
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #f4f7fb;
+        color: #111827;
+    }
+
+    /* =====================================================
+       NAVBAR
+    ===================================================== */
+
+    .navbar {
+        background: #111827;
+        color: white;
+        padding: 18px 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .navbar h2 {
+        margin: 0;
+        font-size: 22px;
+    }
+
+    .navbar-links {
+        display: flex;
+        align-items: center;
+        gap: 22px;
+    }
+
+    .navbar a {
+        color: #e5e7eb;
+        text-decoration: none;
+        font-size: 14px;
+    }
+
+    .navbar a:hover {
+        color: white;
+    }
+
+    /* =====================================================
+       PAGE
+    ===================================================== */
+
+    .page {
+        max-width: 1000px;
+        margin: 40px auto;
+        padding: 0 20px 50px;
+    }
+
+    .page-header {
+        margin-bottom: 28px;
+    }
+
+    .page-header .eyebrow {
+        color: #2563eb;
+        font-size: 13px;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 8px;
+    }
+
+    .page-header h1 {
+        margin: 0 0 8px;
+        font-size: 32px;
+        line-height: 1.2;
+    }
+
+    .page-header p {
+        margin: 0;
+        color: #6b7280;
+        font-size: 16px;
+        line-height: 1.6;
+    }
+
+    /* =====================================================
+       CARDS
+    ===================================================== */
+
+    .card {
+        background: white;
+        border: 1px solid #e5e7eb;
+        border-radius: 16px;
+        padding: 28px;
+        margin-bottom: 22px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    /* =====================================================
+       CLUB CARD
+    ===================================================== */
+
+    .club-card {
+        border-left: 5px solid #2563eb;
+    }
+
+    .section-label {
+        color: #2563eb;
+        font-size: 12px;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+        margin-bottom: 8px;
+    }
+
+    .club-card h2 {
+        margin: 0 0 16px;
+        font-size: 25px;
+        color: #111827;
+    }
+
+    .club-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 18px;
+    }
+
+    .meta-item {
+        background: #f3f4f6;
+        color: #374151;
+        padding: 8px 12px;
+        border-radius: 8px;
+        font-size: 14px;
+    }
+
+    .club-description {
+        color: #6b7280;
+        line-height: 1.6;
+        margin: 0 0 18px;
+    }
+
+    .recruitment {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 12px;
+        border-radius: 8px;
+        background: #dcfce7;
+        color: #166534;
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    .status-dot {
+        width: 8px;
+        height: 8px;
+        background: #16a34a;
+        border-radius: 50%;
+        display: inline-block;
+    }
+
+    /* =====================================================
+       APPLICATION HEADER
+    ===================================================== */
+
+    .form-header {
+        border-bottom: 1px solid #e5e7eb;
+        padding-bottom: 20px;
+        margin-bottom: 24px;
+    }
+
+    .form-header h2 {
+        margin: 0 0 6px;
+        font-size: 23px;
+    }
+
+    .form-header p {
+        margin: 0;
+        color: #6b7280;
+        line-height: 1.5;
+    }
+
+    /* =====================================================
+       ERROR
+    ===================================================== */
+
+    .error {
+        background: #fef2f2;
+        color: #991b1b;
+        border: 1px solid #fecaca;
+        padding: 13px 15px;
+        border-radius: 9px;
+        margin-bottom: 22px;
+    }
+
+    /* =====================================================
+       PROFILE BOX
+    ===================================================== */
+
+    .profile-box {
+        background: #eff6ff;
+        border: 1px solid #bfdbfe;
+        border-radius: 12px;
+        padding: 18px;
+        margin-bottom: 28px;
+    }
+
+    .profile-title {
+        font-weight: bold;
+        color: #1e3a8a;
+        margin-bottom: 8px;
+        font-size: 14px;
+    }
+
+    .profile-name {
+        font-size: 17px;
+        font-weight: bold;
+        color: #111827;
+    }
+
+    .profile-details {
+        color: #4b5563;
+        margin-top: 5px;
+        font-size: 14px;
+    }
+
+    /* =====================================================
+       FORM SECTIONS
+    ===================================================== */
+
+    .form-section {
+        margin-bottom: 28px;
+    }
+
+    .form-section-title {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 18px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #e5e7eb;
+    }
+
+    .form-section-number {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: #2563eb;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 13px;
+        font-weight: bold;
+    }
+
+    .form-section-title h3 {
+        margin: 0;
+        font-size: 17px;
+    }
+
+    .form-section-title span {
+        color: #6b7280;
+        font-size: 13px;
+        margin-left: auto;
+    }
+
+    .form-group {
+        margin-bottom: 22px;
+    }
+
+    label {
+        display: block;
+        font-weight: bold;
+        font-size: 14px;
+        margin-bottom: 8px;
+        color: #1f2937;
+    }
+
+    .required {
+        color: #dc2626;
+        margin-left: 3px;
+    }
+
+    textarea,
+    input {
+        width: 100%;
+        padding: 13px 14px;
+        border: 1px solid #d1d5db;
+        border-radius: 9px;
+        background: white;
+        color: #111827;
+        font-size: 15px;
+        font-family: inherit;
+        transition: 0.2s;
+    }
+
+    textarea {
+        min-height: 120px;
+        resize: vertical;
+    }
+
+    input {
+        height: 48px;
+    }
+
+    textarea:focus,
+    input:focus {
+        outline: none;
+        border-color: #2563eb;
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+
+    .hint {
+        color: #6b7280;
+        font-size: 13px;
+        margin: 7px 0 0;
+        line-height: 1.5;
+    }
+
+    /* =====================================================
+       WARNING
+    ===================================================== */
+
+    .warning {
+        background: #fffbeb;
+        border: 1px solid #fde68a;
+        color: #92400e;
+        border-radius: 10px;
+        padding: 16px;
+        margin-top: 8px;
+    }
+
+    .warning strong {
+        display: block;
+        margin-bottom: 6px;
+    }
+
+    .warning p {
+        margin: 0;
+        line-height: 1.5;
+        font-size: 14px;
+    }
+
+    /* =====================================================
+       BUTTONS
+    ===================================================== */
+
+    .button-row {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: 28px;
+        padding-top: 22px;
+        border-top: 1px solid #e5e7eb;
+    }
+
+    .button {
+        border: none;
+        border-radius: 9px;
+        padding: 13px 20px;
+        background: #2563eb;
+        color: white;
+        font-size: 15px;
+        font-weight: bold;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-block;
+        transition: 0.2s;
+    }
+
+    .button:hover {
+        background: #1d4ed8;
+        transform: translateY(-1px);
+    }
+
+    .secondary-button {
+        background: #f3f4f6;
+        color: #374151;
+    }
+
+    .secondary-button:hover {
+        background: #e5e7eb;
+    }
+
+    /* =====================================================
+       MOBILE
+    ===================================================== */
+
+    @media (max-width: 700px) {
+
+        .navbar {
+            padding: 16px 20px;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 14px;
+        }
+
+        .navbar-links {
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .page {
+            margin-top: 25px;
+            padding: 0 15px 35px;
+        }
+
+        .page-header h1 {
+            font-size: 27px;
+        }
+
+        .card {
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        .form-section-title {
+            align-items: flex-start;
+        }
+
+        .form-section-title span {
+            display: none;
+        }
+
+        .button {
+            width: 100%;
+            text-align: center;
+        }
+
+        .club-meta {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+    }
+</style>
+```
+
+</head>
+
+<body>
+
+```
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<div class="navbar">
+
+    <h2>CampusConnect</h2>
+
+    <div class="navbar-links">
+
+        <a href="/student/dashboard">Dashboard</a>
+
+        <a href="/student/clubs">Explore Clubs</a>
+
+        <a href="/student/applications">My Requests</a>
+
+        <a href="/student/profile">Profile</a>
+
+        <a href="/logout">Logout</a>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     PAGE
+===================================================== -->
+
+<main class="page">
+
+    <!-- PAGE HEADER -->
+
+    <div class="page-header">
+
+        <div class="eyebrow">
+            Club Membership
+        </div>
+
+        <h1>
+            📝 Apply to Join
+        </h1>
+
+        <p>
+            Tell the club about yourself, your skills,
+            and why you would like to become a member.
+        </p>
+
+    </div>
+
+
+    <!-- =================================================
+         CLUB INFORMATION
+    ================================================= -->
+
+    <div class="card club-card">
+
+        <div class="section-label">
+            Club Information
+        </div>
+
+        <h2>
+            {{ club["club_name"] }}
+        </h2>
+
+        <div class="club-meta">
+
+            <div class="meta-item">
+                🎓 {{ club["university"] }}
+            </div>
+
+            <div class="meta-item">
+                📂 {{ club["category"] }}
+            </div>
+
+        </div>
+
+        {% if club["description"] %}
+
+            <p class="club-description">
+                {{ club["description"] }}
+            </p>
+
+        {% endif %}
+
+        <div class="recruitment">
+
+            <span class="status-dot"></span>
+
+            Recruitment:
+            {{ club["recruitment_status"] }}
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         APPLICATION FORM
+    ================================================= -->
+
+    <div class="card">
+
+        <div class="form-header">
+
+            <div class="section-label">
+                Application Form
+            </div>
+
+            <h2>
+                Request to Join
+            </h2>
+
+            <p>
+                Complete the sections below. Required fields
+                are marked with <span class="required">*</span>.
+            </p>
+
+        </div>
+
+
+        <!-- ERROR -->
+
+        {% if error %}
+
+            <div class="error">
+                ⚠️ {{ error }}
+            </div>
+
+        {% endif %}
+
+
+        <!-- STUDENT PROFILE -->
+
+        <div class="profile-box">
+
+            <div class="profile-title">
+                👤 Your Student Profile
+            </div>
+
+            <div class="profile-name">
+                {{ student["name"] }}
+            </div>
+
+            <div class="profile-details">
+
+                {% if student["course"] %}
+                    {{ student["course"] }}
+                {% endif %}
+
+                {% if student["course"] and student["year"] %}
+                    •
+                {% endif %}
+
+                {% if student["year"] %}
+                    {{ student["year"] }}
+                {% endif %}
+
+            </div>
+
+        </div>
+
+
+        <form
+            action="/student/apply/{{ club['id'] }}"
+            method="POST"
+        >
+
+
+            <!-- =================================================
+                 SECTION 1 — SKILLS
+            ================================================= -->
+
+            <div class="form-section">
+
+                <div class="form-section-title">
+
+                    <div class="form-section-number">
+                        1
+                    </div>
+
+                    <h3>
+                        Your Skills
+                    </h3>
+
+                    <span>
+                        Required
+                    </span>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="skills">
+
+                        Skills
+                        <span class="required">*</span>
+
+                    </label>
+
+                    <textarea
+                        id="skills"
+                        name="skills"
+                        placeholder="e.g. Python, Java, public speaking, leadership..."
+                        required
+                    >{{ student["skills"] or '' }}</textarea>
+
+                    <p class="hint">
+                        List the skills that are relevant to this club.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 SECTION 2 — INTERESTS
+            ================================================= -->
+
+            <div class="form-section">
+
+                <div class="form-section-title">
+
+                    <div class="form-section-number">
+                        2
+                    </div>
+
+                    <h3>
+                        Your Interests
+                    </h3>
+
+                    <span>
+                        Required
+                    </span>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="interests">
+
+                        Interests
+                        <span class="required">*</span>
+
+                    </label>
+
+                    <textarea
+                        id="interests"
+                        name="interests"
+                        placeholder="e.g. Web development, robotics, entrepreneurship..."
+                        required
+                    >{{ student["interests"] or '' }}</textarea>
+
+                    <p class="hint">
+                        Tell the club which topics, activities,
+                        or areas you are interested in.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 SECTION 3 — MOTIVATION
+            ================================================= -->
+
+            <div class="form-section">
+
+                <div class="form-section-title">
+
+                    <div class="form-section-number">
+                        3
+                    </div>
+
+                    <h3>
+                        Your Motivation
+                    </h3>
+
+                    <span>
+                        Required
+                    </span>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="why_join">
+
+                        Why do you want to join this club?
+                        <span class="required">*</span>
+
+                    </label>
+
+                    <textarea
+                        id="why_join"
+                        name="why_join"
+                        placeholder="Explain why you want to join and what you hope to contribute..."
+                        required
+                    ></textarea>
+
+                    <p class="hint">
+                        Give the club a short explanation of
+                        your motivation and what you hope to contribute.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 SECTION 4 — PORTFOLIO
+            ================================================= -->
+
+            <div class="form-section">
+
+                <div class="form-section-title">
+
+                    <div class="form-section-number">
+                        4
+                    </div>
+
+                    <h3>
+                        Portfolio
+                    </h3>
+
+                    <span>
+                        Optional
+                    </span>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="portfolio">
+
+                        Portfolio / GitHub
+                        <span style="font-weight: normal; color: #6b7280;">
+                            (optional)
+                        </span>
+
+                    </label>
+
+                    <input
+                        type="url"
+                        id="portfolio"
+                        name="portfolio"
+                        placeholder="https://github.com/yourname"
+                    >
+
+                    <p class="hint">
+                        Add a GitHub, portfolio, LinkedIn,
+                        personal website, or other relevant link.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 WARNING
+            ================================================= -->
+
+            <div class="warning">
+
+                <strong>
+                    ⚠️ Before submitting
+                </strong>
+
+                <p>
+                    Make sure your information is accurate.
+                    Once submitted, the club will be able to
+                    review your application.
+
+                </p>
+
+            </div>
+
+
+            <!-- =================================================
+                 BUTTONS
+            ================================================= -->
+
+            <div class="button-row">
+
+                <button
+                    type="submit"
+                    class="button"
+                >
+                    🚀 Submit Application
+                </button>
+
+                <a
+                    href="/student/club/{{ club['id'] }}"
+                    class="button secondary-button"
+                >
+                    ← Back to Club
+                </a>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</main>
+```
+
+</body>
+
+</html>

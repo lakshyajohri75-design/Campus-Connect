@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Login - CampusConnect</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+
+            font-family: Arial, sans-serif;
+
+            background: #f5f7fb;
+
+            color: #222;
+        }
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        .navbar {
+            background: #111827;
+
+            color: white;
+
+            padding: 18px 40px;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+        }
+
+        .navbar h2 {
+            margin: 0;
+        }
+
+        .navbar-links {
+            display: flex;
+
+            gap: 20px;
+
+            align-items: center;
+        }
+
+        .navbar a {
+            color: white;
+
+            text-decoration: none;
+        }
+
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+
+        /* =========================
+           CONTAINER
+        ========================= */
+
+        .container {
+            max-width: 600px;
+
+            margin: 50px auto;
+
+            padding: 0 20px;
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        .header {
+            margin-bottom: 25px;
+        }
+
+        .header h1 {
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            color: #666;
+
+            margin: 0;
+        }
+
+        /* =========================
+           LOGIN CARD
+        ========================= */
+
+        .card {
+            background: white;
+
+            padding: 30px;
+
+            border-radius: 12px;
+
+            box-shadow:
+                0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .card h2 {
+            margin-top: 0;
+
+            margin-bottom: 8px;
+        }
+
+        .card-description {
+            color: #666;
+
+            margin-bottom: 25px;
+
+            line-height: 1.5;
+        }
+
+        /* =========================
+           ERROR
+        ========================= */
+
+        .error {
+            background: #fee2e2;
+
+            color: #991b1b;
+
+            border: 1px solid #fecaca;
+
+            padding: 12px 15px;
+
+            border-radius: 8px;
+
+            margin-bottom: 20px;
+        }
+
+        /* =========================
+           USER TYPE
+        ========================= */
+
+        .type-section {
+            margin-bottom: 25px;
+        }
+
+        .type-section > strong {
+            display: block;
+
+            margin-bottom: 12px;
+        }
+
+        .type-options {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 12px;
+        }
+
+        .type-option {
+            border: 1px solid #d1d5db;
+
+            border-radius: 9px;
+
+            padding: 13px;
+
+            cursor: pointer;
+
+            background: white;
+        }
+
+        .type-option:hover {
+            border-color: #2563eb;
+
+            background: #eff6ff;
+        }
+
+        .type-option input {
+            margin-right: 8px;
+        }
+
+        /* =========================
+           FORM
+        ========================= */
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+
+            font-weight: bold;
+
+            margin-bottom: 7px;
+        }
+
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+
+            padding: 12px;
+
+            border: 1px solid #d1d5db;
+
+            border-radius: 8px;
+
+            font-size: 15px;
+
+            font-family: inherit;
+
+            background: white;
+        }
+
+        input[type="email"]:focus,
+        input[type="password"]:focus {
+            outline: none;
+
+            border-color: #2563eb;
+
+            box-shadow:
+                0 0 0 2px rgba(37, 99, 235, 0.1);
+        }
+
+        /* =========================
+           BUTTON
+        ========================= */
+
+        .button {
+            width: 100%;
+
+            padding: 12px 20px;
+
+            border: none;
+
+            border-radius: 8px;
+
+            background: #2563eb;
+
+            color: white;
+
+            font-size: 15px;
+
+            cursor: pointer;
+
+            margin-top: 5px;
+        }
+
+        .button:hover {
+            background: #1d4ed8;
+        }
+
+        /* =========================
+           REGISTER SECTION
+        ========================= */
+
+        .register-section {
+            margin-top: 25px;
+
+            padding-top: 25px;
+
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .register-section h3 {
+            margin-top: 0;
+
+            margin-bottom: 15px;
+        }
+
+        .register-links {
+            display: grid;
+
+            gap: 10px;
+        }
+
+        .register-link {
+            display: block;
+
+            padding: 12px 15px;
+
+            background: #f9fafb;
+
+            border: 1px solid #e5e7eb;
+
+            border-radius: 8px;
+
+            color: #2563eb;
+
+            text-decoration: none;
+        }
+
+        .register-link:hover {
+            background: #eff6ff;
+
+            border-color: #bfdbfe;
+        }
+
+        /* =========================
+           BACK LINK
+        ========================= */
+
+        .back {
+            display: inline-block;
+
+            margin-top: 25px;
+
+            color: #2563eb;
+
+            text-decoration: none;
+        }
+
+        .back:hover {
+            text-decoration: underline;
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 700px) {
+
+            .navbar {
+                padding: 16px 20px;
+
+                flex-direction: column;
+
+                align-items: flex-start;
+
+                gap: 14px;
+            }
+
+            .navbar-links {
+                flex-wrap: wrap;
+
+                gap: 12px;
+            }
+
+            .container {
+                margin-top: 30px;
+            }
+
+            .card {
+                padding: 20px;
+            }
+
+            .type-options {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+
+    <!-- =========================
+         NAVBAR
+    ========================= -->
+
+    <div class="navbar">
+
+        <h2>
+            CampusConnect
+        </h2>
+
+        <div class="navbar-links">
+
+            <a href="/">
+                Home
+            </a>
+
+            <a href="/student">
+                Student
+            </a>
+
+            <a href="/club">
+                Club
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         MAIN
+    ========================= -->
+
+    <div class="container">
+
+
+        <!-- =========================
+             HEADER
+        ========================= -->
+
+        <div class="header">
+
+            <h1>
+                🔐 Login
+            </h1>
+
+            <p>
+                Sign in to access your CampusConnect account.
+            </p>
+
+        </div>
+
+
+        <!-- =========================
+             LOGIN CARD
+        ========================= -->
+
+        <div class="card">
+
+            <h2>
+                Welcome Back
+            </h2>
+
+            <p class="card-description">
+                Choose whether you are logging in as a student
+                or as a club, then enter your account details.
+            </p>
+
+
+            <!-- =========================
+                 ERROR
+            ========================= -->
+
+            {% if error %}
+
+                <div class="error">
+                    {{ error }}
+                </div>
+
+            {% endif %}
+
+
+            <!-- =========================
+                 LOGIN FORM
+            ========================= -->
+
+            <form
+                action="/login"
+                method="POST"
+            >
+
+
+                <!-- =========================
+                     USER TYPE
+                ========================= -->
+
+                <div class="type-section">
+
+                    <strong>
+                        I am here as:
+                    </strong>
+
+                    <div class="type-options">
+
+
+                        <!-- STUDENT -->
+
+                        <label class="type-option">
+
+                            <input
+                                type="radio"
+                                name="user_type"
+                                value="student"
+                                {% if login_type == "student" %}
+                                    checked
+                                {% endif %}
+                                required
+                            >
+
+                            🎓 Student
+
+                        </label>
+
+
+                        <!-- CLUB -->
+
+                        <label class="type-option">
+
+                            <input
+                                type="radio"
+                                name="user_type"
+                                value="club"
+                                {% if login_type == "club" %}
+                                    checked
+                                {% endif %}
+                                required
+                            >
+
+                            🏢 Club
+
+                        </label>
+
+
+                    </div>
+
+                </div>
+
+
+                <!-- =========================
+                     EMAIL
+                ========================= -->
+
+                <div class="form-group">
+
+                    <label for="email">
+                        Email
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="Enter your email"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- =========================
+                     PASSWORD
+                ========================= -->
+
+                <div class="form-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Enter your password"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- =========================
+                     LOGIN BUTTON
+                ========================= -->
+
+                <button
+                    type="submit"
+                    class="button"
+                >
+                    Login
+                </button>
+
+
+            </form>
+
+
+            <!-- =========================
+                 REGISTER
+            ========================= -->
+
+            <div class="register-section">
+
+                <h3>
+                    Don't have an account?
+                </h3>
+
+                <div class="register-links">
+
+                    <a
+                        href="/student/register"
+                        class="register-link"
+                    >
+                        🎓 Create Student Account
+                    </a>
+
+                    <a
+                        href="/club/register"
+                        class="register-link"
+                    >
+                        🏢 Create Club Account
+                    </a>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- =========================
+             BACK
+        ========================= -->
+
+        <a
+            href="/"
+            class="back"
+        >
+            ← Back to Home
+        </a>
+
+
+    </div>
+
+</body>
+
+</html>

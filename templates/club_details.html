@@ -1,0 +1,851 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>{{ club["club_name"] }} - CampusConnect</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            color: #111827;
+        }
+
+        /* =====================================================
+           NAVBAR
+        ===================================================== */
+
+        .navbar {
+            background: #111827;
+            color: white;
+
+            padding: 18px 40px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar h2 {
+            margin: 0;
+            font-size: 22px;
+        }
+
+        .navbar-links {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+        }
+
+        .navbar a {
+            color: #e5e7eb;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .navbar a:hover {
+            color: white;
+        }
+
+        /* =====================================================
+           PAGE
+        ===================================================== */
+
+        .page {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px 50px;
+        }
+
+        /* =====================================================
+           PAGE HEADER
+        ===================================================== */
+
+        .page-header {
+            margin-bottom: 28px;
+        }
+
+        .eyebrow {
+            color: #2563eb;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .page-header h1 {
+            margin: 0 0 8px;
+            font-size: 32px;
+            line-height: 1.2;
+        }
+
+        .page-header p {
+            margin: 0;
+            color: #6b7280;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        /* =====================================================
+           CARD
+        ===================================================== */
+
+        .card {
+            background: white;
+
+            border: 1px solid #e5e7eb;
+
+            border-radius: 16px;
+
+            padding: 28px;
+
+            margin-bottom: 22px;
+
+            box-shadow:
+                0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        /* =====================================================
+           CLUB HERO
+        ===================================================== */
+
+        .club-card {
+            border-left: 5px solid #2563eb;
+        }
+
+        .club-label {
+            color: #2563eb;
+
+            font-size: 12px;
+
+            font-weight: bold;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.8px;
+
+            margin-bottom: 8px;
+        }
+
+        .club-title {
+            margin: 0 0 18px;
+
+            font-size: 30px;
+
+            color: #111827;
+        }
+
+        .club-meta {
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 10px;
+
+            margin-bottom: 22px;
+        }
+
+        .meta-item {
+            background: #f3f4f6;
+
+            color: #374151;
+
+            padding: 9px 13px;
+
+            border-radius: 8px;
+
+            font-size: 14px;
+        }
+
+        /* =====================================================
+           RECRUITMENT
+        ===================================================== */
+
+        .recruitment {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            padding: 9px 13px;
+
+            border-radius: 8px;
+
+            background: #dcfce7;
+
+            color: #166534;
+
+            font-size: 14px;
+
+            font-weight: bold;
+        }
+
+        .status-dot {
+            width: 8px;
+
+            height: 8px;
+
+            background: #16a34a;
+
+            border-radius: 50%;
+
+            display: inline-block;
+        }
+
+        .status-closed {
+            background: #fee2e2;
+
+            color: #991b1b;
+        }
+
+        .status-closed .status-dot {
+            background: #dc2626;
+        }
+
+        /* =====================================================
+           SECTION
+        ===================================================== */
+
+        .section-label {
+            color: #2563eb;
+
+            font-size: 12px;
+
+            font-weight: bold;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.8px;
+
+            margin-bottom: 8px;
+        }
+
+        .section-title {
+            margin: 0 0 14px;
+
+            font-size: 22px;
+
+            color: #111827;
+        }
+
+        .section-text {
+            color: #4b5563;
+
+            line-height: 1.7;
+
+            margin: 0;
+        }
+
+        /* =====================================================
+           ABOUT CLUB
+        ===================================================== */
+
+        .about-card {
+            min-height: 150px;
+        }
+
+        /* =====================================================
+           INFORMATION GRID
+        ===================================================== */
+
+        .info-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+
+            gap: 15px;
+
+            margin-top: 20px;
+        }
+
+        .info-item {
+            background: #f9fafb;
+
+            border: 1px solid #e5e7eb;
+
+            border-radius: 10px;
+
+            padding: 16px;
+        }
+
+        .info-item-label {
+            color: #6b7280;
+
+            font-size: 13px;
+
+            margin-bottom: 6px;
+        }
+
+        .info-item-value {
+            color: #111827;
+
+            font-size: 15px;
+
+            font-weight: bold;
+        }
+
+        /* =====================================================
+           APPLICATION CARD
+        ===================================================== */
+
+        .application-card {
+            background: #eff6ff;
+
+            border-color: #bfdbfe;
+        }
+
+        .application-card h2 {
+            margin: 0 0 8px;
+
+            color: #1e3a8a;
+
+            font-size: 22px;
+        }
+
+        .application-card p {
+            margin: 0;
+
+            color: #374151;
+
+            line-height: 1.6;
+        }
+
+        /* =====================================================
+           ERROR
+        ===================================================== */
+
+        .error {
+            background: #fef2f2;
+
+            color: #991b1b;
+
+            border: 1px solid #fecaca;
+
+            padding: 13px 15px;
+
+            border-radius: 9px;
+
+            margin-bottom: 22px;
+        }
+
+        /* =====================================================
+           BUTTONS
+        ===================================================== */
+
+        .button-row {
+            display: flex;
+
+            gap: 12px;
+
+            flex-wrap: wrap;
+
+            margin-top: 25px;
+
+            padding-top: 22px;
+
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .button {
+            border: none;
+
+            border-radius: 9px;
+
+            padding: 13px 20px;
+
+            background: #2563eb;
+
+            color: white;
+
+            font-size: 15px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            text-decoration: none;
+
+            display: inline-block;
+
+            transition: 0.2s;
+        }
+
+        .button:hover {
+            background: #1d4ed8;
+
+            transform: translateY(-1px);
+        }
+
+        .secondary-button {
+            background: #f3f4f6;
+
+            color: #374151;
+        }
+
+        .secondary-button:hover {
+            background: #e5e7eb;
+        }
+
+        /* =====================================================
+           NOT AVAILABLE
+        ===================================================== */
+
+        .closed-message {
+            margin-top: 18px;
+
+            padding: 14px 16px;
+
+            background: #fef2f2;
+
+            border: 1px solid #fecaca;
+
+            border-radius: 9px;
+
+            color: #991b1b;
+
+            line-height: 1.5;
+        }
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
+        @media (max-width: 700px) {
+
+            .navbar {
+                padding: 16px 20px;
+
+                flex-direction: column;
+
+                align-items: flex-start;
+
+                gap: 14px;
+            }
+
+            .navbar-links {
+                flex-wrap: wrap;
+
+                gap: 12px;
+            }
+
+            .page {
+                margin-top: 25px;
+
+                padding: 0 15px 35px;
+            }
+
+            .page-header h1 {
+                font-size: 27px;
+            }
+
+            .club-title {
+                font-size: 25px;
+            }
+
+            .card {
+                padding: 20px;
+
+                border-radius: 12px;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .club-meta {
+                flex-direction: column;
+
+                align-items: flex-start;
+            }
+
+            .button {
+                width: 100%;
+
+                text-align: center;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+
+    <!-- =====================================================
+         NAVBAR
+    ===================================================== -->
+
+    <div class="navbar">
+
+        <h2>
+            CampusConnect
+        </h2>
+
+        <div class="navbar-links">
+
+            <a href="/student/dashboard">
+                Dashboard
+            </a>
+
+            <a href="/student/clubs">
+                Explore Clubs
+            </a>
+
+            <a href="/student/applications">
+                My Requests
+            </a>
+
+            <a href="/student/profile">
+                Profile
+            </a>
+
+            <a href="/logout">
+                Logout
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         PAGE
+    ===================================================== -->
+
+    <main class="page">
+
+
+        <!-- =================================================
+             HEADER
+        ================================================= -->
+
+        <div class="page-header">
+
+            <div class="eyebrow">
+                Club Details
+            </div>
+
+            <h1>
+                🏢 Explore This Club
+            </h1>
+
+            <p>
+                Learn more about the club, its activities,
+                and its membership before applying.
+            </p>
+
+        </div>
+
+
+        <!-- =================================================
+             ERROR
+        ================================================= -->
+
+        {% if error %}
+
+            <div class="error">
+
+                ⚠️ {{ error }}
+
+            </div>
+
+        {% endif %}
+
+
+        <!-- =================================================
+             CLUB HERO
+        ================================================= -->
+
+        <div class="card club-card">
+
+            <div class="club-label">
+                Club Information
+            </div>
+
+            <h2 class="club-title">
+
+                {{ club["club_name"] }}
+
+            </h2>
+
+
+            <!-- CLUB META -->
+
+            <div class="club-meta">
+
+                <div class="meta-item">
+
+                    🎓
+
+                    {{ club["university"] }}
+
+                </div>
+
+
+                <div class="meta-item">
+
+                    📂
+
+                    {{ club["category"] }}
+
+                </div>
+
+            </div>
+
+
+            <!-- RECRUITMENT STATUS -->
+
+            {% set recruitment_status =
+                club["recruitment_status"]|default("Open")
+            %}
+
+
+            {% if recruitment_status|lower == "open" %}
+
+                <div class="recruitment">
+
+                    <span class="status-dot"></span>
+
+                    Recruitment:
+
+                    {{ recruitment_status }}
+
+                </div>
+
+            {% else %}
+
+                <div class="recruitment status-closed">
+
+                    <span class="status-dot"></span>
+
+                    Recruitment:
+
+                    {{ recruitment_status }}
+
+                </div>
+
+            {% endif %}
+
+        </div>
+
+
+        <!-- =================================================
+             ABOUT CLUB
+        ================================================= -->
+
+        <div class="card about-card">
+
+            <div class="section-label">
+                About the Club
+            </div>
+
+            <h2 class="section-title">
+                What this club is about
+            </h2>
+
+
+            {% if club["description"] %}
+
+                <p class="section-text">
+
+                    {{ club["description"] }}
+
+                </p>
+
+            {% else %}
+
+                <p class="section-text">
+
+                    This club has not added a description yet.
+
+                </p>
+
+            {% endif %}
+
+        </div>
+
+
+        <!-- =================================================
+             CLUB DETAILS
+        ================================================= -->
+
+        <div class="card">
+
+            <div class="section-label">
+                Club Details
+            </div>
+
+            <h2 class="section-title">
+                Quick Information
+            </h2>
+
+
+            <div class="info-grid">
+
+
+                <!-- CLUB NAME -->
+
+                <div class="info-item">
+
+                    <div class="info-item-label">
+                        Club Name
+                    </div>
+
+                    <div class="info-item-value">
+
+                        {{ club["club_name"] }}
+
+                    </div>
+
+                </div>
+
+
+                <!-- UNIVERSITY -->
+
+                <div class="info-item">
+
+                    <div class="info-item-label">
+                        University
+                    </div>
+
+                    <div class="info-item-value">
+
+                        {{ club["university"] }}
+
+                    </div>
+
+                </div>
+
+
+                <!-- CATEGORY -->
+
+                <div class="info-item">
+
+                    <div class="info-item-label">
+                        Category
+                    </div>
+
+                    <div class="info-item-value">
+
+                        {{ club["category"] }}
+
+                    </div>
+
+                </div>
+
+
+                <!-- RECRUITMENT -->
+
+                <div class="info-item">
+
+                    <div class="info-item-label">
+                        Recruitment Status
+                    </div>
+
+                    <div class="info-item-value">
+
+                        {{ recruitment_status }}
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             APPLICATION
+        ================================================= -->
+
+        <div class="card application-card">
+
+            <div class="section-label">
+                Membership
+            </div>
+
+            <h2>
+                Interested in joining?
+            </h2>
+
+            <p>
+
+                If this club matches your interests,
+                skills, and goals, you can submit an
+                application to join.
+
+            </p>
+
+
+            <div class="button-row">
+
+
+                {% if recruitment_status|lower == "open" %}
+
+                    <a
+                        href="/student/apply/{{ club['id'] }}"
+                        class="button"
+                    >
+
+                        📝 Apply to Join
+
+                    </a>
+
+                {% else %}
+
+                    <div class="closed-message">
+
+                        ⚠️
+
+                        This club is not currently accepting
+                        applications.
+
+                    </div>
+
+                {% endif %}
+
+
+                <a
+                    href="/student/clubs"
+                    class="button secondary-button"
+                >
+
+                    ← Back to Clubs
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+    </main>
+
+
+</body>
+
+</html>
+```

@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Student Registration - CampusConnect</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            color: #222;
+
+            min-height: 100vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 20px;
+        }
+
+        /* =====================================================
+           REGISTER CARD
+        ===================================================== */
+
+        .register-card {
+            width: 100%;
+            max-width: 500px;
+
+            background: white;
+
+            padding: 35px;
+
+            border-radius: 14px;
+
+            box-shadow:
+                0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        /* =====================================================
+           HEADER
+        ===================================================== */
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .header h1 {
+            margin: 0 0 10px 0;
+            font-size: 28px;
+        }
+
+        .header p {
+            margin: 0;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        /* =====================================================
+           ERROR
+        ===================================================== */
+
+        .error {
+            background: #fee2e2;
+            color: #991b1b;
+
+            border: 1px solid #fecaca;
+
+            padding: 12px 15px;
+
+            border-radius: 8px;
+
+            margin-bottom: 20px;
+        }
+
+        /* =====================================================
+           FORM
+        ===================================================== */
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+
+            font-weight: bold;
+
+            margin-bottom: 7px;
+        }
+
+        input {
+            width: 100%;
+
+            padding: 12px;
+
+            border: 1px solid #d1d5db;
+
+            border-radius: 8px;
+
+            font-size: 15px;
+
+            font-family: inherit;
+
+            background: white;
+        }
+
+        input:focus {
+            outline: none;
+
+            border-color: #2563eb;
+
+            box-shadow:
+                0 0 0 2px rgba(37, 99, 235, 0.1);
+        }
+
+        .hint {
+            margin-top: 6px;
+
+            font-size: 13px;
+
+            color: #777;
+        }
+
+        /* =====================================================
+           BUTTON
+        ===================================================== */
+
+        .button {
+            width: 100%;
+
+            padding: 13px;
+
+            border: none;
+
+            border-radius: 8px;
+
+            background: #2563eb;
+
+            color: white;
+
+            font-size: 15px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background: #1d4ed8;
+        }
+
+        /* =====================================================
+           FOOTER LINKS
+        ===================================================== */
+
+        .links {
+            text-align: center;
+
+            margin-top: 25px;
+
+            padding-top: 20px;
+
+            border-top: 1px solid #eee;
+        }
+
+        .links p {
+            margin: 8px 0;
+            color: #666;
+        }
+
+        .links a {
+            color: #2563eb;
+
+            text-decoration: none;
+
+            font-weight: bold;
+        }
+
+        .links a:hover {
+            text-decoration: underline;
+        }
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
+        @media (max-width: 600px) {
+
+            body {
+                align-items: flex-start;
+                padding-top: 30px;
+            }
+
+            .register-card {
+                padding: 25px 20px;
+            }
+
+            .header h1 {
+                font-size: 24px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+
+    <!-- =====================================================
+         REGISTER CARD
+    ===================================================== -->
+
+    <div class="register-card">
+
+
+        <!-- =================================================
+             HEADER
+        ================================================= -->
+
+        <div class="header">
+
+            <div class="logo">
+                🎓 CampusConnect
+            </div>
+
+            <h1>
+                Create Student Account
+            </h1>
+
+            <p>
+                Join CampusConnect and discover clubs,
+                opportunities and campus communities.
+            </p>
+
+        </div>
+
+
+        <!-- =================================================
+             ERROR MESSAGE
+        ================================================= -->
+
+        {% if error %}
+
+            <div class="error">
+                {{ error }}
+            </div>
+
+        {% endif %}
+
+
+        <!-- =================================================
+             REGISTRATION FORM
+        ================================================= -->
+
+        <form
+            method="POST"
+            action="/student/register"
+        >
+
+
+            <!-- =================================================
+                 NAME
+            ================================================= -->
+
+            <div class="form-group">
+
+                <label for="name">
+                    Full Name
+                </label>
+
+                <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    placeholder="Enter your full name"
+                    autocomplete="name"
+                    required
+                >
+
+            </div>
+
+
+            <!-- =================================================
+                 EMAIL
+            ================================================= -->
+
+            <div class="form-group">
+
+                <label for="email">
+                    Email
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="Enter your email"
+                    autocomplete="email"
+                    required
+                >
+
+                <div class="hint">
+                    Use an email address you can access.
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 PASSWORD
+            ================================================= -->
+
+            <div class="form-group">
+
+                <label for="password">
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Create a password"
+                    autocomplete="new-password"
+                    minlength="6"
+                    required
+                >
+
+                <div class="hint">
+                    Password must be at least 6 characters.
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 SUBMIT
+            ================================================= -->
+
+            <button
+                type="submit"
+                class="button"
+            >
+                🎓 Create Student Account
+            </button>
+
+        </form>
+
+
+        <!-- =================================================
+             LINKS
+        ================================================= -->
+
+        <div class="links">
+
+            <p>
+                Already have an account?
+                <a href="/login?type=student">
+                    Student Login
+                </a>
+            </p>
+
+            <p>
+                Are you registering a club?
+                <a href="/club/register">
+                    Create Club Account
+                </a>
+            </p>
+
+            <p>
+                <a href="/">
+                    ← Back to Home
+                </a>
+            </p>
+
+        </div>
+
+
+    </div>
+
+</body>
+
+</html>

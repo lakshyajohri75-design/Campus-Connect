@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>CampusConnect</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+
+            font-family: Arial, sans-serif;
+
+            background: #f5f7fb;
+
+            color: #222;
+        }
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        .navbar {
+            background: #111827;
+
+            color: white;
+
+            padding: 18px 40px;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+        }
+
+        .navbar h2 {
+            margin: 0;
+        }
+
+        .navbar-links {
+            display: flex;
+
+            gap: 20px;
+
+            align-items: center;
+        }
+
+        .navbar a {
+            color: white;
+
+            text-decoration: none;
+        }
+
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            max-width: 1000px;
+
+            margin: 55px auto 35px;
+
+            padding: 0 20px;
+
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+
+            margin: 0 0 15px;
+
+            color: #111827;
+        }
+
+        .hero p {
+            font-size: 19px;
+
+            color: #666;
+
+            line-height: 1.6;
+
+            max-width: 700px;
+
+            margin: 0 auto 35px;
+        }
+
+        /* =========================
+           ROLE CARDS
+        ========================= */
+
+        .cards {
+            max-width: 850px;
+
+            margin: 0 auto;
+
+            padding: 0 20px 25px;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(280px, 1fr));
+
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+
+            padding: 30px;
+
+            border-radius: 12px;
+
+            box-shadow:
+                0 4px 15px rgba(0, 0, 0, 0.08);
+
+            text-align: left;
+
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 7px 20px rgba(0, 0, 0, 0.10);
+        }
+
+        .card h2 {
+            margin-top: 0;
+
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            color: #666;
+
+            line-height: 1.6;
+
+            min-height: 75px;
+
+            margin-bottom: 15px;
+        }
+
+        /* =========================
+           ICON BOX
+        ========================= */
+
+        .icon-box {
+            width: 55px;
+
+            height: 55px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background: #eff6ff;
+
+            border: 1px solid #bfdbfe;
+
+            border-radius: 12px;
+
+            font-size: 27px;
+
+            margin-bottom: 18px;
+        }
+
+        /* =========================
+           BUTTON
+        ========================= */
+
+        .button {
+            display: inline-block;
+
+            padding: 12px 20px;
+
+            border: none;
+
+            border-radius: 8px;
+
+            background: #2563eb;
+
+            color: white;
+
+            font-size: 15px;
+
+            font-weight: normal;
+
+            cursor: pointer;
+
+            text-decoration: none;
+        }
+
+        .button:hover {
+            background: #1d4ed8;
+        }
+
+        /* =========================
+           FEATURES SECTION
+        ========================= */
+
+        .features {
+            max-width: 1100px;
+
+            margin: 20px auto 0;
+
+            padding: 35px 20px 50px;
+
+            text-align: center;
+        }
+
+        .features h2 {
+            margin-bottom: 25px;
+        }
+
+        .feature-list {
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(210px, 1fr));
+
+            gap: 18px;
+        }
+
+        .feature {
+            background: white;
+
+            padding: 22px;
+
+            border-radius: 10px;
+
+            box-shadow:
+                0 4px 15px rgba(0, 0, 0, 0.06);
+
+            border: 1px solid #f0f0f0;
+        }
+
+        .feature h3 {
+            margin-top: 0;
+
+            margin-bottom: 10px;
+        }
+
+        .feature p {
+            color: #666;
+
+            line-height: 1.5;
+
+            margin-bottom: 0;
+        }
+
+        /* =========================
+           INFO BOX
+        ========================= */
+
+        .info-box {
+            max-width: 850px;
+
+            margin: 0 auto 25px;
+
+            padding: 15px 20px;
+
+            background: #eff6ff;
+
+            border: 1px solid #bfdbfe;
+
+            border-radius: 9px;
+
+            color: #1e3a8a;
+
+            text-align: center;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            background: white;
+
+            border-top: 1px solid #e5e7eb;
+
+            color: #666;
+
+            text-align: center;
+
+            padding: 25px;
+
+            margin-top: 20px;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 700px) {
+
+            .navbar {
+                padding: 16px 20px;
+
+                flex-direction: column;
+
+                align-items: flex-start;
+
+                gap: 14px;
+            }
+
+            .navbar-links {
+                flex-wrap: wrap;
+
+                gap: 12px;
+            }
+
+            .hero {
+                margin-top: 35px;
+            }
+
+            .hero h1 {
+                font-size: 38px;
+            }
+
+            .hero p {
+                font-size: 17px;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+
+                padding-left: 20px;
+
+                padding-right: 20px;
+            }
+
+            .card {
+                padding: 22px;
+            }
+
+            .button {
+                width: 100%;
+
+                text-align: center;
+            }
+
+            .features {
+                padding-top: 25px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+
+    <!-- =========================
+         NAVBAR
+    ========================= -->
+
+    <div class="navbar">
+
+        <h2>
+            CampusConnect
+        </h2>
+
+        <div class="navbar-links">
+
+            <a href="/student">
+                Student
+            </a>
+
+            <a href="/club">
+                Club
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         HERO
+    ========================= -->
+
+    <section class="hero">
+
+        <h1>
+            Discover. Connect. Grow.
+        </h1>
+
+        <p>
+            Find student clubs, discover opportunities,
+            and build your campus community with CampusConnect.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         ROLE SELECTION
+    ========================= -->
+
+    <div class="cards">
+
+
+        <!-- =========================
+             STUDENT
+        ========================= -->
+
+        <div class="card">
+
+            <div class="icon-box">
+                🎓
+            </div>
+
+            <h2>
+                I'm a Student
+            </h2>
+
+            <p>
+                Explore campus clubs, discover opportunities,
+                apply to clubs, and track your applications
+                from one place.
+            </p>
+
+            <a
+                href="/student"
+                class="button"
+            >
+                Explore as Student
+            </a>
+
+        </div>
+
+
+        <!-- =========================
+             CLUB
+        ========================= -->
+
+        <div class="card">
+
+            <div class="icon-box">
+                🏢
+            </div>
+
+            <h2>
+                I'm a Club
+            </h2>
+
+            <p>
+                Create your club profile, manage recruitment,
+                review applications, and find new members
+                for your organization.
+            </p>
+
+            <a
+                href="/club"
+                class="button"
+            >
+                Manage as Club
+            </a>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- =========================
+         INFO
+    ========================= -->
+
+    <div class="info-box">
+
+        <strong>
+            🚀 Everything you need for your campus community.
+        </strong>
+
+    </div>
+
+
+    <!-- =========================
+         FEATURES
+    ========================= -->
+
+    <section class="features">
+
+        <h2>
+            Everything in One Place
+        </h2>
+
+
+        <div class="feature-list">
+
+
+            <!-- DISCOVER -->
+
+            <div class="feature">
+
+                <h3>
+                    🔎 Discover Clubs
+                </h3>
+
+                <p>
+                    Find clubs based on your interests
+                    and explore new opportunities.
+                </p>
+
+            </div>
+
+
+            <!-- APPLY -->
+
+            <div class="feature">
+
+                <h3>
+                    📝 Apply
+                </h3>
+
+                <p>
+                    Apply to clubs directly through
+                    CampusConnect.
+                </p>
+
+            </div>
+
+
+            <!-- TRACK -->
+
+            <div class="feature">
+
+                <h3>
+                    📊 Track Applications
+                </h3>
+
+                <p>
+                    Follow your recruitment progress
+                    and application status.
+                </p>
+
+            </div>
+
+
+            <!-- RECRUIT -->
+
+            <div class="feature">
+
+                <h3>
+                    👥 Recruit Members
+                </h3>
+
+                <p>
+                    Clubs can manage applications
+                    and recruit new members.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         FOOTER
+    ========================= -->
+
+    <footer>
+
+        <p>
+            © 2026 CampusConnect
+        </p>
+
+    </footer>
+
+
+</body>
+
+</html>

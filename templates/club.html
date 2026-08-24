@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Club - CampusConnect</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+
+            font-family: Arial, sans-serif;
+
+            background: #f5f7fb;
+
+            color: #222;
+        }
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        .navbar {
+            background: #111827;
+
+            color: white;
+
+            padding: 18px 40px;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+        }
+
+        .navbar h2 {
+            margin: 0;
+        }
+
+        .navbar-links {
+            display: flex;
+
+            gap: 20px;
+
+            align-items: center;
+        }
+
+        .navbar a {
+            color: white;
+
+            text-decoration: none;
+        }
+
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+
+        /* =========================
+           CONTAINER
+        ========================= */
+
+        .container {
+            max-width: 850px;
+
+            margin: 50px auto;
+
+            padding: 0 20px;
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        .header {
+            margin-bottom: 25px;
+        }
+
+        .header h1 {
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            color: #666;
+
+            margin: 0;
+
+            line-height: 1.5;
+        }
+
+        /* =========================
+           CARD
+        ========================= */
+
+        .card {
+            background: white;
+
+            padding: 30px;
+
+            border-radius: 12px;
+
+            box-shadow:
+                0 4px 15px rgba(0, 0, 0, 0.08);
+
+            margin-bottom: 25px;
+        }
+
+        .card h2 {
+            margin-top: 0;
+
+            margin-bottom: 8px;
+        }
+
+        .card p {
+            color: #666;
+
+            line-height: 1.5;
+        }
+
+        /* =========================
+           ACTION CARD
+        ========================= */
+
+        .action-card {
+            background: white;
+
+            padding: 25px;
+
+            border-radius: 12px;
+
+            box-shadow:
+                0 4px 15px rgba(0, 0, 0, 0.08);
+
+            margin-bottom: 20px;
+        }
+
+        .action-card h3 {
+            margin-top: 0;
+
+            margin-bottom: 8px;
+        }
+
+        .action-card p {
+            color: #666;
+
+            line-height: 1.5;
+
+            margin-bottom: 20px;
+        }
+
+        /* =========================
+           ICON
+        ========================= */
+
+        .icon-box {
+            width: 55px;
+
+            height: 55px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background: #eff6ff;
+
+            border: 1px solid #bfdbfe;
+
+            border-radius: 12px;
+
+            font-size: 27px;
+
+            margin-bottom: 15px;
+        }
+
+        /* =========================
+           BUTTONS
+        ========================= */
+
+        .button {
+            display: inline-block;
+
+            padding: 12px 20px;
+
+            border: none;
+
+            border-radius: 8px;
+
+            background: #2563eb;
+
+            color: white;
+
+            font-size: 15px;
+
+            cursor: pointer;
+
+            text-decoration: none;
+        }
+
+        .button:hover {
+            background: #1d4ed8;
+        }
+
+        .secondary-button {
+            background: #e5e7eb;
+
+            color: #111827;
+        }
+
+        .secondary-button:hover {
+            background: #d1d5db;
+        }
+
+        /* =========================
+           INFO BOX
+        ========================= */
+
+        .info-box {
+            background: #eff6ff;
+
+            border: 1px solid #bfdbfe;
+
+            color: #1e3a8a;
+
+            padding: 15px;
+
+            border-radius: 9px;
+
+            margin-bottom: 25px;
+
+            line-height: 1.5;
+        }
+
+        .info-box strong {
+            display: block;
+
+            margin-bottom: 6px;
+        }
+
+        /* =========================
+           BACK LINK
+        ========================= */
+
+        .back {
+            display: inline-block;
+
+            margin-top: 5px;
+
+            color: #2563eb;
+
+            text-decoration: none;
+        }
+
+        .back:hover {
+            text-decoration: underline;
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 700px) {
+
+            .navbar {
+                padding: 16px 20px;
+
+                flex-direction: column;
+
+                align-items: flex-start;
+
+                gap: 14px;
+            }
+
+            .navbar-links {
+                flex-wrap: wrap;
+
+                gap: 12px;
+            }
+
+            .container {
+                margin-top: 30px;
+            }
+
+            .card,
+            .action-card {
+                padding: 20px;
+            }
+
+            .button {
+                width: 100%;
+
+                text-align: center;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+
+    <!-- =========================
+         NAVBAR
+    ========================= -->
+
+    <div class="navbar">
+
+        <h2>
+            CampusConnect
+        </h2>
+
+        <div class="navbar-links">
+
+            <a href="/">
+                Home
+            </a>
+
+            <a href="/login?type=club">
+                Club Login
+            </a>
+
+            <a href="/club/register">
+                Register Club
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         MAIN
+    ========================= -->
+
+    <div class="container">
+
+
+        <!-- =========================
+             HEADER
+        ========================= -->
+
+        <div class="header">
+
+            <h1>
+                🏢 Club
+            </h1>
+
+            <p>
+                Manage your club, recruit students, and review
+                applications through CampusConnect.
+            </p>
+
+        </div>
+
+
+        <!-- =========================
+             INTRO CARD
+        ========================= -->
+
+        <div class="card">
+
+            <h2>
+                Welcome to CampusConnect
+            </h2>
+
+            <p>
+                CampusConnect helps college clubs manage their
+                recruitment process, connect with students,
+                review applications and organize their team.
+            </p>
+
+            <div class="info-box">
+
+                <strong>
+                    💡 Club Portal
+                </strong>
+
+                Choose an option below to access your existing
+                club account or create a new club account.
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             LOGIN
+        ========================= -->
+
+        <div class="action-card">
+
+            <div class="icon-box">
+                🔐
+            </div>
+
+            <h3>
+                Already have a club account?
+            </h3>
+
+            <p>
+                Login to access your club dashboard, manage
+                applications, update your club profile and
+                manage your team members.
+            </p>
+
+            <a
+                href="/login?type=club"
+                class="button"
+            >
+                Club Login
+            </a>
+
+        </div>
+
+
+        <!-- =========================
+             REGISTER
+        ========================= -->
+
+        <div class="action-card">
+
+            <div class="icon-box">
+                🚀
+            </div>
+
+            <h3>
+                New Club?
+            </h3>
+
+            <p>
+                Register your club on CampusConnect and start
+                connecting with students and managing your
+                recruitment process.
+            </p>
+
+            <a
+                href="/club/register"
+                class="button"
+            >
+                Club Register
+            </a>
+
+        </div>
+
+
+        <!-- =========================
+             BACK
+        ========================= -->
+
+        <a
+            href="/"
+            class="back"
+        >
+            ← Back to Home
+        </a>
+
+    </div>
+
+</body>
+
+</html>
